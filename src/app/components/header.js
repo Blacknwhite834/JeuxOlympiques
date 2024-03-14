@@ -26,9 +26,9 @@ export default function Header() {
 
 
     return (
-        <header className="text-white w-full py-3 px-10 md:px-16 lg:px-24 flex justify-between lg:grid grid-cols-3 items-center">
+        <header className="text-white w-full py-3 px-5 sm:px-10 md:px-16 lg:px-24 flex justify-between lg:grid grid-cols-3 items-center">
             <div className="hidden lg:flex justify-start gap-3">
-                <span className="text-base xl:text-xl">Ouverture des JO <br/>dans :</span>
+                <span className="text-base xl:text-xl text-right">Ouverture des JO <br/>dans :</span>
                 <div className="flex flex-row gap-2">
                     <div className="flex flex-col items-center gap-0">
                         <span className="text-base xl:text-2xl">{decompte.days}</span>
