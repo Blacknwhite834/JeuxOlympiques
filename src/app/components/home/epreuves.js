@@ -3,7 +3,7 @@ import Card from "../card";
 
 export default function Epreuves() {
     return (
-        <div className="h-[calc(100dvh)] w-full">
+        <div className="h-fit w-full mt-16">
             <h1 className="text-center text-black text-4xl sm:text-6xl xl:text-8xl font-bold">Les épreuves</h1>
 
             <div className="mt-5 sm:mt-24 flex flex-col gap-16">

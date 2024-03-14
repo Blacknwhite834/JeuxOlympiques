@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function PresentationJO() {
   return (
-    <div className="h-[calc(100dvh)] w-full mt-5 sm:mt-10 ">
+    <div className="h-fit w-full mt-5 sm:mt-10 ">
 
         <img src="/anneaux4.png" alt="anneaux olympiques" className="w-fit hidden lg:block absolute -z-10" />
         <img src="/anneaux3.png" alt="anneaux olympiques" className="w-fit hidden lg:block absolute mt-96 -z-10" />
