@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+/**  @import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap') */
 module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,9 +9,10 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        'background': "url('/background.jpg')",
+      },
+      fontFamily: {
+        'play': ['Play', 'sans-serif'],
       },
     },
   },
