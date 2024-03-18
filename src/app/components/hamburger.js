@@ -1,7 +1,8 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 
-export default function Hamburger() {
+export default function Hamburger({ bgColor, borderColor }) {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleClick = () => {
@@ -18,19 +19,20 @@ export default function Hamburger() {
   return (
     <div>
 
-    <div className={`border rounded-full p-4 border-white ${isOpen ? "border border-black z-50": ""}`} onClick={handleClick}>
-    <div className="w-5 h-5 flex flex-col justify-between items-center cursor-pointer " >
-      <div className={`w-7 h-0.5 bg-white ${isOpen ? "transform rotate-45 translate-y-2 z-50 bg-black" : ""}`}></div>
-      <div className={`w-6 h-0.5 bg-white ${isOpen ? "hidden" : ""}`}></div>
-      <div className={`w-7 h-0.5 bg-white ${isOpen ? "transform -rotate-45 -translate-y-2 z-50 bg-black" : ""}`}></div>
+<div className={`border rounded-full p-4 ${isOpen ? "border-black" : borderColor} z-50`} onClick={handleClick}>
+    <div className="w-5 h-5 flex flex-col justify-between items-center cursor-pointer">
+    <div className={`w-7 h-0.5 ${isOpen ? "bg-black rotate-45 translate-y-2" : bgColor} z-50`}></div>
+    <div className={`w-6 h-0.5 ${isOpen ? "hidden" : bgColor} z-50`}></div>
+    <div className={`w-7 h-0.5 ${isOpen ? "bg-black -rotate-45 -translate-y-2" : bgColor} z-50`}></div>
     </div>
-    </div>
+</div>
 
-        <div className="absolute w-full h-screen bg-white z-40 top-0 left-0 hidden" id="menu">
+
+        <div className="absolute bg-white w-full h-screen z-40 top-0 left-0 hidden" id="menu">
             <div className="flex flex-col justify-center items-center w-full h-full gap-3">
-                <img src="/logo.png" alt="Paris 2024" className="w-[100px] h-[100px]" />
+                <Link href="/"><img src="/logo.png" alt="Paris 2024" className="w-[100px] h-[100px]" /></Link>
                 <a href="/" className="text-black text-4xl border-t-2 border-black pt-2">Accueil</a>
-                <a href="/" className="text-black text-4xl">Billetterie</a>
+                <a href="/billetterie" className="text-black text-4xl">Billetterie</a>
                 <a href="/" className="text-black text-4xl">Contact</a>
             </div>
         </div>

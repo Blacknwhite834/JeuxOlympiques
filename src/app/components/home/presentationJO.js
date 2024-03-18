@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function PresentationJO() {
   return (
-    <div className="h-fit w-full mt-5 sm:mt-10 ">
+    <div className="h-fit w-full mt-5 sm:mt-10" id="presentation">
 
         <img src="/anneaux4.png" alt="anneaux olympiques" className="w-fit hidden lg:block absolute -z-10" />
         <img src="/anneaux3.png" alt="anneaux olympiques" className="w-fit hidden lg:block absolute mt-96 -z-10" />
@@ -13,8 +13,8 @@ export default function PresentationJO() {
         <Image src="/logoOlympique.png" alt="Paris 2024" width={100} height={100} />
         </div>
 
-        <div className="w-full flex justify-center mt-5 sm:mt-10">
-            <p className="text-center w-full lg:w-4/6 text-base sm:text-xl lg:text-2xl bg-zinc-100 rounded-[30px] sm:rounded-[50px] py-5 px-5 sm:px-10 flex flex-col gap-5">
+        <div className="w-full flex justify-center mt-5 sm:mt-10 px-5">
+            <p className="text-center w-full lg:w-4/6 text-base sm:text-xl lg:text-2xl bg-zinc-100 rounded-[30px] sm:rounded-[50px] py-5 sm:py-10 px-5 sm:px-10 flex flex-col gap-5">
             <span>
             Paris 2024 promet d'être une édition spectaculaire des Jeux Olympiques, marquant la troisième fois que la capitale française accueille cet événement mondial après les éditions de 1900 et 1924. Sous le slogan "Venez partager", Paris 2024 vise à être une célébration de l'unité, de l'innovation et de la durabilité, reflétant les valeurs olympiques d'excellence, d'amitié et de respect.
             </span>

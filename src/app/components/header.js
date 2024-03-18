@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Hamburger from "./hamburger";
 
-export default function Header() {
+export default function Header({ color, bgColor, borderColor}) {
     const [decompte, setDecompte] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
     useEffect(() => {
@@ -26,7 +26,7 @@ export default function Header() {
 
 
     return (
-        <header className="text-white w-full py-3 px-5 sm:px-10 md:px-16 lg:px-24 flex justify-between lg:grid grid-cols-3 items-center">
+        <header className=" w-full py-3 px-5 sm:px-10 md:px-16 lg:px-24 flex justify-between lg:grid grid-cols-3 items-center" style={color}>
             <div className="hidden lg:flex justify-start gap-3">
                 <span className="text-base xl:text-xl text-right">Ouverture des JO <br/>dans :</span>
                 <div className="flex flex-row gap-2">
@@ -50,19 +50,21 @@ export default function Header() {
             </div>
 
             <div className="flex justify-center">
-                <img src="/logo.png" alt="Paris 2024" className="w-[100px] md:w-[140px] lg:w-[160px] h-[100px] md:h-[140px] lg:h-[160px]" />
+                <Link href="/">
+                <img src="/logo.png" alt="Paris 2024" className="w-[100px] md:w-[140px] lg:w-[160px] h-[100px] md:h-[140px] lg:h-[160px] hover:scale-105 transition duration-300" />
+                </Link>
             </div>
 
             <div className="block sm:hidden">
-                <Hamburger />
+                <Hamburger bgColor={bgColor} borderColor={borderColor} />
             </div>
 
             <div className="hidden sm:flex justify-end gap-5 text-xl xl:text-2xl">
-                <Link href="/" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Accueil
+                <Link href="/" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-orange-300 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Accueil
                 </Link>
-                <Link href="/" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Billetterie
+                <Link href="/billetterie" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-orange-300 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Billetterie
                 </Link>
-                <Link href="/" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Panier
+                <Link href="/" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-orange-300 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Panier
                 </Link>
             </div>
         </header>

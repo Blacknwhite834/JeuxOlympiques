@@ -3,7 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+* {
+  scroll-behavior: smooth;
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -14,7 +16,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: white
+  background: white;
 }
 
 @layer utilities {
