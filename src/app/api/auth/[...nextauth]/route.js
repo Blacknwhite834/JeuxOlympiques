@@ -6,7 +6,7 @@ import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
-export default NextAuth({
+const handler = NextAuth({
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -15,7 +15,6 @@ export default NextAuth({
         password: {  label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
-        console.log('credentials' + credentials);
         const { email, password } = credentials;
         const user = await prisma.user.findUnique({
           where: { email }
@@ -30,5 +29,13 @@ export default NextAuth({
       },
     }),
   ],
+  pages: {
+    signIn: '/login',
+    signOut: '/',
+    error: '/login',
+    newUser: '/register',
+  },
   // Add other NextAuth configurations here
 });
+
+export {handler as GET, handler as POST};

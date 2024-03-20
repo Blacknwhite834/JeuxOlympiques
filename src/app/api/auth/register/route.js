@@ -1,4 +1,4 @@
-// /pages/api/auth/register.js
+// Register 
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 import CryptoJS from 'crypto-js';

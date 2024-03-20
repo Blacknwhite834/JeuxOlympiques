@@ -1,3 +1,4 @@
+import Provider from "./Provider";
 import "./globals.css";
 
 
@@ -9,7 +10,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fr">
+      <Provider >
       <body className="font-play">{children}</body>
+      </Provider>
     </html>
   );
 }
