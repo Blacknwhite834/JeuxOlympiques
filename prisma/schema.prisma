@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String   @id @default(uuid())
+  email      String   @unique
+  name       String?
+  password   String
+  role       String   @default("user")
+  accountKey String
+  ventes     Vente[]  // Relation inverse pour User - Vente
+}
+
+model Offre {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  prix        Int
+  nombre      Int
+  ventes      Vente[]  // Relation inverse pour Offre - Vente
+}
+
+model Vente {
+  id        String   @id @default(uuid())
+  date      DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  offre     Offre    @relation(fields: [offreId], references: [id])
+  offreId   String
+  total     Int
+  venteKey  String   // Clé générée lors de l'achat
+}
