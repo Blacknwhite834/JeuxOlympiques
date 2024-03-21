@@ -7,12 +7,13 @@ import bcrypt from 'bcryptjs';
 const prisma = new PrismaClient();
 
 const handler = NextAuth({
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
         email: { label: "Email", type: "text" },
-        password: {  label: "Password", type: "password" }
+        password: {  label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
         const { email, password } = credentials;
@@ -21,10 +22,16 @@ const handler = NextAuth({
         });
 
         if (user && bcrypt.compareSync(password, user.password)) {
-          return { id: user.id, name: user.name, email: user.email };
+          return {
+            id: user.id, 
+            name: user.name, 
+            email: user.email,
+            role: user.role,
+          };
         }
 
         // Return null if user data could not be retrieved
+        
         return null;
       },
     }),
@@ -34,6 +41,25 @@ const handler = NextAuth({
     signOut: '/',
     error: '/login',
     newUser: '/register',
+  },
+  
+  callbacks: {
+    async session({ session, token }) {
+      // Ici, vous ajoutez `role` à `session.user` en utilisant la propriété du `token`
+      // qui a été ajoutée dans le callback `jwt` (si vous utilisez les JWT)
+      if (token.role) { // Assurez-vous que token.role est défini
+        session.user.role = token.role;
+      }
+      return session;
+    },
+    async jwt({ token, user }) {
+      // Si l'utilisateur est défini, cela signifie que l'autorisation a réussi
+      // Ajoutez le rôle de l'utilisateur au token pour qu'il puisse être utilisé dans le callback de la session
+      if (user) {
+        token.role = user.role;
+      }
+      return token;
+    },
   },
   // Add other NextAuth configurations here
 });

@@ -7,12 +7,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  USER
+  ADMIN
+  ORGANISATEUR
+}
+
 model User {
   id         String   @id @default(uuid())
   email      String   @unique
   name       String?
   password   String
-  role       String   @default("user")
+  role       Role     @default(USER)
   accountKey String
   ventes     Vente[]  // Relation inverse pour User - Vente
 }

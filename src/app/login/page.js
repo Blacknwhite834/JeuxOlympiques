@@ -18,19 +18,18 @@ export default function Login() {
       // Rediriger l'utilisateur vers la page protégée
       window.location.href = '/hello';
     }
-  }, [session]);
+  }, [session]); // Ajouter router à la liste des dépendances
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Utilisez signIn de NextAuth pour gérer la connexion
     const result = await signIn('credentials', { redirect: false, email, password });
-
+  
     if (result?.error) {
-      // Si signIn retourne une erreur, affichez-la
-      setMessage(result.error);
+      setMessage('Email ou mot de passe incorrect');
     } else {
-      // Si tout va bien, redirigez vers la page protégée
-      router.replace('/hello');
+      // Si la connexion réussit, le rôle de l'utilisateur est déjà inclus dans la session
+      // Rediriger vers la page protégée
+      window.location.href = '/hello';
     }
   };
 
@@ -39,8 +38,8 @@ export default function Login() {
       <Header bgColor="bg-black" color={{ color: "black" }} borderColor="border-black"/>
       <h1 className="text-4xl sm:text-6xl xl:text-8xl text-black font-bold text-center px-5">Veuillez vous connecter</h1>
       <main className="flex-1 flex justify-center items-center">
-      {message && <p className=' text-red-500 font-bold text-base'>{message}</p>}
       <form onSubmit={handleSubmit} className='flex flex-col justify-center items-center sm:items-start gap-5 w-full sm:w-fit px-5 sm:px-0 mt-5 sm:mt-10'>
+      {message && <p className=' text-red-500 font-bold text-base'>{message}</p>}
         <input type="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} required className='py-2 w-full sm:w-fit px-5 pr-0 sm:pr-56 border-2 border-black rounded-full placeholder:text-black text-base sm:text-xl'/>
         <input type="password" placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} required className='py-2 w-full sm:w-fit px-5 pr-0 sm:pr-56 border-2 border-black rounded-full placeholder:text-black text-base sm:text-xl'/>
         <div className='flex flex-col sm:flex-row justify-between items-center gap-3 w-full'>

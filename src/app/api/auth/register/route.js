@@ -24,7 +24,7 @@ export async function POST(req) {
 
     if (existingUser) {
       // Si un utilisateur existe déjà avec cet email, renvoie une erreur
-      return new Response(JSON.stringify({ message: "Un utilisateur existe déjà avec cet email." }), {
+      return new Response(JSON.stringify({ message: "Erreur" }), {
         status: 400,
         headers: {
           "Content-Type": "application/json",
