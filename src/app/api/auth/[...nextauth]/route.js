@@ -42,7 +42,6 @@ const handler = NextAuth({
     error: '/login',
     newUser: '/register',
   },
-  
   callbacks: {
     async session({ session, token }) {
       // Ici, vous ajoutez `role` à `session.user` en utilisant la propriété du `token`

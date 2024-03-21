@@ -1,10 +1,27 @@
 // api/offres
 
 import { PrismaClient } from '@prisma/client';
+import { getServerSession } from 'next-auth';
+import { getToken } from 'next-auth/jwt';
+import { getSession } from 'next-auth/react';
 
 const prisma = new PrismaClient();
 
 export async function GET(req) {
+    const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+
+    // Vérifier si l'utilisateur est connecté et a le rôle requis
+    if (!session || session.role !== 'ADMIN') {
+        return new Response(JSON.stringify({ error: "Non autorisé" }), {
+            status: 401,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+    }
+
+    // Vérification de l'authentification concernant l'administrateur
+    
     const offres = await prisma.offre.findMany();
     return new Response(JSON.stringify(offres), {
         status: 200,
@@ -15,6 +32,27 @@ export async function GET(req) {
 }
 
 export async function POST(req) {
+    const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+
+    // Vérifier si l'utilisateur est connecté et a le rôle requis
+    if (!session || session.role !== 'ADMIN') {
+        return new Response(JSON.stringify({ error: "Non autorisé" }), {
+            status: 401,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+    }
+
+    // Vérification de l'authentification concernant l'administrateur
+    if (!session || session.user.role !== 'ADMIN') {
+        return new Response(JSON.stringify({ error: "Non autorisé" }), {
+            status: 401,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+    } else {
     const body = await req.json();
     // Utilisation des champs spécifiés dans le schéma initial
     const { title, description, prix, nombre } = body;
@@ -45,6 +83,7 @@ export async function POST(req) {
                 "Content-Type": "application/json",
             },
         });
+    }
     }
 }
 

@@ -1,10 +1,22 @@
 // api/offres/[id]
 
 import { PrismaClient } from '@prisma/client';
+import { getToken } from 'next-auth/jwt';
 
 const prisma = new PrismaClient();
 
-export async function GET(request, context) {
+export async function GET(req, context) {
+    const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+
+    // Vérifier si l'utilisateur est connecté et a le rôle requis
+    if (!session || session.role !== 'ADMIN') {
+        return new Response(JSON.stringify({ error: "Non autorisé" }), {
+            status: 401,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+    }
     const { id } = context.params;
     if (!id) {
         return new Response("Missing 'id' parameter", { status: 400 });
@@ -37,13 +49,24 @@ export async function GET(request, context) {
     }
 }
 
-export async function PUT(request, context) {
+export async function PUT(req, context) {
+    const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+
+    // Vérifier si l'utilisateur est connecté et a le rôle requis
+    if (!session || session.role !== 'ADMIN') {
+        return new Response(JSON.stringify({ error: "Non autorisé" }), {
+            status: 401,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+    }
     const { id } = context.params;
     if (!id) {
         return new Response("Missing 'id' parameter", { status: 400 });
     }
 
-    const body = await request.json();
+    const body = await req.json();
     const { title, description, prix, nombre } = body; // Utilisez les champs appropriés de votre modèle
 
     const prixInt = parseInt(prix);
@@ -78,7 +101,18 @@ export async function PUT(request, context) {
     }
 }
 
-export async function DELETE(request, context) {
+export async function DELETE(req, context) {
+    const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+
+    // Vérifier si l'utilisateur est connecté et a le rôle requis
+    if (!session || session.role !== 'ADMIN') {
+        return new Response(JSON.stringify({ error: "Non autorisé" }), {
+            status: 401,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+    }
     const { id } = context.params;
     if (!id) {
         return new Response("Missing 'id' parameter", { status: 400 });
