@@ -8,17 +8,6 @@ import { getSession } from 'next-auth/react';
 const prisma = new PrismaClient();
 
 export async function GET(req) {
-    const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-
-    // Vérifier si l'utilisateur est connecté et a le rôle requis
-    if (!session || session.role !== 'ADMIN' && session.role !== 'ORGANISATEUR') {
-        return new Response(JSON.stringify({ error: "Non autorisé" }), {
-            status: 401,
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-    }
 
     // Vérification de l'authentification concernant l'administrateur
     

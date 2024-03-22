@@ -34,7 +34,7 @@ export default function AdminOnlyPage() {
     return null; // En principe, cette ligne ne sera jamais exécutée si la redirection fonctionne
   }
 
-  const bgColorRandom = () => {
+  const borderColorRandom = () => {
     const colors = ['border-sky-600', 'border-amber-400', 'border-rose-600', 'border-green-600'];
     return colors[Math.floor(Math.random() * colors.length)];
   }
@@ -46,7 +46,7 @@ export default function AdminOnlyPage() {
         <h1 className="text-center sm:text-left text-black text-4xl sm:text-5xl font-bold">Tableau de bord</h1>
         <div className="mt-10 flex flex-col gap-16">
 
-          <div className="flex flex-col">
+          <div className="flex flex-col w-fit">
           <h2 className="text-2xl font-bold">Nombre de vente par offre</h2>
           {/* Composant de graphique pour afficher les ventes par offre */}
           <div className="mt-5 flex gap-5">
@@ -54,7 +54,7 @@ export default function AdminOnlyPage() {
           {ventes.map(offre => (
               <div key={offre.id} className="flex justify-center items-center flex-col w-fit gap-2">
                 <h3 className="text-xl font-bold">{offre.title}</h3>
-                <div className={`rounded-full border-[10px] h-32 w-32 flex flex-col justify-center items-center ${bgColorRandom()}`}>
+                <div className={`rounded-full border-[10px] h-32 w-32 flex flex-col justify-center items-center ${borderColorRandom()}`}>
                   <span className="text-lg">{offre.nombreVentes}</span> 
                   <span>VENDU</span>
                 </div>
@@ -79,7 +79,7 @@ export default function AdminOnlyPage() {
           {ventes.map(offre => (
               <div key={offre.id} className="flex justify-center items-center flex-col w-fit gap-2">
                 <h3 className="text-xl font-bold">{offre.title}</h3>
-                <div className={`rounded-full border-[10px] h-32 w-32 flex flex-col justify-center items-center ${bgColorRandom()}`}>
+                <div className={`rounded-full border-[10px] h-32 w-32 flex flex-col justify-center items-center ${borderColorRandom()}`}>
                   <span className="text-lg">{offre.nombreVentes * offre.prix}</span> 
                   <span>€</span>
                 </div>

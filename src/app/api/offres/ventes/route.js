@@ -1,8 +1,20 @@
 import { PrismaClient } from "@prisma/client";
+import { getToken } from "next-auth/jwt";
 
 const prisma = new PrismaClient();
 
 export async function GET(req) {
+    const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+
+    if (!session || session.role !== "ADMIN" && session.role !== "ORGANISATEUR") {
+        return new Response(JSON.stringify({ error: "Non autorisé" }), {
+            status: 401,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+    }
+
     const ventesParOffre = await prisma.offre.findMany({
         select: {
           id: true,
