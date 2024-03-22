@@ -9,7 +9,7 @@ export async function GET(req, context) {
     const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
     // Vérifier si l'utilisateur est connecté et a le rôle requis
-    if (!session || session.role !== 'ADMIN') {
+    if (!session || session.role !== 'ADMIN' && session.role !== 'ORGANISATEUR') {
         return new Response(JSON.stringify({ error: "Non autorisé" }), {
             status: 401,
             headers: {
@@ -53,7 +53,7 @@ export async function PUT(req, context) {
     const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
     // Vérifier si l'utilisateur est connecté et a le rôle requis
-    if (!session || session.role !== 'ADMIN') {
+    if (!session || session.role !== 'ADMIN' && session.role !== 'ORGANISATEUR') {
         return new Response(JSON.stringify({ error: "Non autorisé" }), {
             status: 401,
             headers: {
@@ -105,7 +105,7 @@ export async function DELETE(req, context) {
     const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
     // Vérifier si l'utilisateur est connecté et a le rôle requis
-    if (!session || session.role !== 'ADMIN') {
+    if (!session || session.role !== 'ADMIN' && session.role !== 'ORGANISATEUR') {
         return new Response(JSON.stringify({ error: "Non autorisé" }), {
             status: 401,
             headers: {

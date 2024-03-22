@@ -95,27 +95,27 @@ export default function OffreDetail() {
     }
 
     return (
-        <div className="h-screen flex flex-row">
+        <div className="h-screen flex flex-col xl:flex-row">
             <Sidenav />
-            <div className='flex-1 p-10'>
-                <h1 className="text-left text-black text-4xl sm:text-5xl font-bold">Détails de l'offre</h1>
+            <div className='flex-1 p-5 sm:p-10'>
+                <h1 className="text-center sm:text-left text-black text-4xl sm:text-5xl font-bold">Détails de l'offre</h1>
                 <form onSubmit={handleSubmit} className="mt-10">
                     <div className="mb-4">
                         <label htmlFor="title" className="block">Titre:</label>
-                        <input type="text" id="title" name="title" value={offre.title || ''} onChange={handleChange} className="input border-2 border-black rounded-md p-2" required />
+                        <input type="text" id="title" name="title" value={offre.title || ''} onChange={handleChange} className="input border-2 border-black rounded-md p-2 w-full sm:w-fit" required />
                     </div>
                     <div className="mb-4">
                         <label htmlFor="description" className="block">Description:</label>
                         <textarea id="description" name="description" value={offre.description || ''} onChange={handleChange} className=" w-full h-32 border-2 border-black rounded-md p-2" required />
                     </div>
-                    <div className="flex flex-row gap-4">
+                    <div className="flex flex-col sm:flex-row gap-0 sm:gap-4">
                     <div className="mb-4">
                         <label htmlFor="nombre" className="block">Nombre:</label>
-                        <input type="number" id="nombre" name="nombre" value={offre.nombre} onChange={handleChange} className="input border-2 border-black rounded-md p-2" required />
+                        <input type="number" id="nombre" name="nombre" value={offre.nombre} onChange={handleChange} className="input border-2 border-black rounded-md p-2 w-full sm:w-fit" required />
                     </div>
                     <div className="mb-4">
                         <label htmlFor="prix" className="block">Prix:</label>
-                        <input type="number" id="prix" name="prix" value={offre.prix} onChange={handleChange} className="input border-2 border-black rounded-md p-2" required />
+                        <input type="number" id="prix" name="prix" value={offre.prix} onChange={handleChange} className="input border-2 border-black rounded-md p-2 w-full sm:w-fit" required />
                     </div>
                     </div>
                     <button type="submit" className={`bg-blue-500 text-white px-3 py-1 rounded-md transition duration-300 ${isModified ? '' : 'opacity-70 cursor-not-allowed'}`} disabled={!isModified || isLoading}>

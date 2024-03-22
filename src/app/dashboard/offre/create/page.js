@@ -35,10 +35,10 @@ export default function CreateOffre() {
     };
 
     return (
-        <div className="h-screen flex flex-row">
+        <div className="h-screen flex flex-col xl:flex-row">
             <Sidenav />
-            <div className='flex-1 p-10'>
-            <h1 className="text-left text-black text-4xl sm:text-5xl font-bold">Créer une offre</h1>
+            <div className='flex-1 p-5 sm:p-10'>
+            <h1 className="text-center sm:text-left text-black text-4xl sm:text-5xl font-bold">Créer une offre</h1>
             <form onSubmit={handleSubmit} className="mt-10">
                 <div className="mb-4">
                     <label htmlFor="title " className="block ">Titre:</label>
@@ -48,7 +48,7 @@ export default function CreateOffre() {
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder="Titre"
-                        className="input border-2 border-black rounded-md p-2"
+                        className="input border-2 border-black rounded-md p-2 w-full sm:w-fit"
                         required
                     />
                 </div>
@@ -63,7 +63,7 @@ export default function CreateOffre() {
                         required
                     />
                 </div>
-                <div className="flex flex-row gap-4">
+                <div className="flex flex-col sm:flex-row gap-0 sm:gap-4">
                 <div className="mb-4">
                     <label htmlFor="nombre" className="block ">Nombre de billlets:</label>
                     <input
@@ -72,7 +72,7 @@ export default function CreateOffre() {
                         value={nombre}
                         onChange={(e) => setNombre(e.target.value)}
                         placeholder="Nombre"
-                        className="input border-2 border-black rounded-md p-2"
+                        className="input border-2 border-black rounded-md p-2 w-full sm:w-fit"
                         required
                     />
                 </div>
@@ -84,7 +84,7 @@ export default function CreateOffre() {
                         value={prix}
                         onChange={(e) => setPrix(e.target.value)}
                         placeholder="Prix"
-                        className="input border-2 border-black rounded-md p-2"
+                        className="input border-2 border-black rounded-md p-2 w-full sm:w-fit"
                         required
                     />
                 </div>
