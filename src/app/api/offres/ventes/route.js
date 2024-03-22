@@ -19,9 +19,10 @@ export async function GET(req) {
         select: {
           id: true,
           title: true,
+          prix: true,
           ventes: {
             select: {
-              id: true
+              id: true,
             }
           },
         }

@@ -3,10 +3,17 @@
 import { useEffect } from "react";
 import Header from "../components/header";
 import { useCart } from "../CartContext";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Panier() {
     const { cartItems, clearCart } = useCart();
 
+    const router = useRouter();
+
+    const handleSubmit = () => {
+        router.push("/checkout");
+    }
     return (
         <div className="flex flex-col min-h-screen pb-10">
       <Header bgColor="bg-black" color={{ color: "black" }} borderColor="border-black"/>
@@ -31,7 +38,7 @@ export default function Panier() {
                     ))}
                 </ul>
             ) : (
-                <p className="text-xl text-center">Votre panier est vide</p>
+                <p className="text-xl text-left">Votre panier est vide</p>
             )}
             <button onClick={() => clearCart()} className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-opacity-70 transition duration-300 mt-5">Vider le panier</button>
             </div>
@@ -51,7 +58,7 @@ export default function Panier() {
             <p>Total: </p>
             <span className="font-bold">{cartItems.reduce((total, item) => total + item.prix, 0)}€</span>
             </div>
-            <button className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-opacity-70 transition duration-300 mt-5">Passer la commande</button>
+            <button className={`bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-opacity-70 transition duration-300 mt-5 text-center ${cartItems.length === 0 ? 'opacity-70 cursor-not-allowed' : ''}`} disabled={cartItems.length === 0} onClick={handleSubmit}>Payer</button>
             </div>
 
 

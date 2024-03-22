@@ -6,17 +6,19 @@ import { useSession, signIn } from 'next-auth/react';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-
   const { data: session } = useSession()
+  const router = useRouter();
+
   useEffect(() => {
     if (session) {
       // Rediriger l'utilisateur vers la page protégée
-      window.location.href = '/hello';
+      router.push('/checkout');
     }
   }, [session]); // Ajouter router à la liste des dépendances
 
@@ -28,8 +30,10 @@ export default function Login() {
       setMessage('Email ou mot de passe incorrect');
     } else {
       // Si la connexion réussit, le rôle de l'utilisateur est déjà inclus dans la session
-      // Rediriger vers la page protégée
-      window.location.href = '/hello';
+      // Rediriger vers la page où l'utilisateur était avant la connexion
+      window.location.href = '/checkout';
+
+      
     }
   };
 

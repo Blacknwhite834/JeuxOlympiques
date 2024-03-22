@@ -1,5 +1,6 @@
 import { CartProvider } from "./CartContext";
 import Provider from "./Provider";
+import StripeProvider from "./StripeProvider";
 import "./globals.css";
 
 
@@ -13,7 +14,9 @@ export default function RootLayout({ children }) {
     <html lang="fr">
       <Provider >
         <CartProvider>
-      <body className="font-play">{children}</body>
+          <StripeProvider>
+            <body className="font-play">{children}</body>
+          </StripeProvider>
         </CartProvider>
       </Provider>
     </html>

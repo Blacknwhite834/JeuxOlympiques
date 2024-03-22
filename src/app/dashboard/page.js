@@ -80,7 +80,7 @@ export default function AdminOnlyPage() {
               <div key={offre.id} className="flex justify-center items-center flex-col w-fit gap-2">
                 <h3 className="text-xl font-bold">{offre.title}</h3>
                 <div className={`rounded-full border-[10px] h-32 w-32 flex flex-col justify-center items-center ${borderColorRandom()}`}>
-                  <span className="text-lg">{offre.nombreVentes * offre.prix}</span> 
+                  <span className="text-lg">{offre.nombreVentes * offre.prix}</span>
                   <span>€</span>
                 </div>
               </div>

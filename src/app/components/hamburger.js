@@ -33,7 +33,7 @@ export default function Hamburger({ bgColor, borderColor }) {
                 <Link href="/"><img src="/logo.png" alt="Paris 2024" className="w-[100px] h-[100px]" /></Link>
                 <a href="/" className="text-black text-4xl border-t-2 border-black pt-2">Accueil</a>
                 <a href="/billetterie" className="text-black text-4xl">Billetterie</a>
-                <a href="/" className="text-black text-4xl">Contact</a>
+                <a href="/panier" className="text-black text-4xl">Panier</a>
             </div>
         </div>
 
