@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import { useCart } from "../CartContext";
+import { useRouter } from "next/navigation";
 
 export default function Billetterie() {
     const { addToCart } = useCart();
     const [offres, setOffres] = useState([]);
+    const router = useRouter();
 
     useEffect(() => {
         fetch('/api/offres')
@@ -26,6 +28,7 @@ export default function Billetterie() {
 
     const handleAddToCart = (offre) => {
         addToCart(offre);
+        router.push('/panier');
     }
 
     return (
