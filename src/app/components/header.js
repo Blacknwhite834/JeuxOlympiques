@@ -64,7 +64,7 @@ export default function Header({ color, bgColor, borderColor}) {
                 </Link>
                 <Link href="/billetterie" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-orange-300 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Billetterie
                 </Link>
-                <Link href="/" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-orange-300 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Panier
+                <Link href="/panier" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-orange-300 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Panier
                 </Link>
             </div>
         </header>

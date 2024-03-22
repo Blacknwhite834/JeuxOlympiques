@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import Footer from "../components/footer";
 import Header from "../components/header";
+import { useCart } from "../CartContext";
 
 export default function Billetterie() {
+    const { addToCart } = useCart();
     const [offres, setOffres] = useState([]);
 
     useEffect(() => {
@@ -22,6 +24,10 @@ export default function Billetterie() {
             .catch(error => console.error("Erreur lors de la récupération des offres:", error));
     }, []);
 
+    const handleAddToCart = (offre) => {
+        addToCart(offre);
+    }
+
     return (
         <div className="flex flex-col min-h-screen">
             <Header bgColor="bg-black" color={{ color: "black" }} borderColor="border-black"/>
@@ -32,7 +38,9 @@ export default function Billetterie() {
                         <div key={offre.id} className={`flex flex-col justify-between items-center gap-5 sm:gap-10 xl:gap-16 rounded-[30px] sm:rounded-[50px] border-8 py-5 sm:py-10 px-5 shadow-xl border-${offre.colorClass}`}>
                             <h1 className="text-2xl sm:text-4xl text-black font-bold text-center">{offre.title}</h1>
                             <p className="text-black text-center text-base sm:text-2xl">{offre.description}</p>
-                            <button className={`text-white rounded-full px-5 py-3 text-base sm:text-xl font-bold bg-${offre.colorClass}`}><span className="font-normal">Prix par billet:</span> {offre.prix}€</button>
+                            <button className={`text-white rounded-full px-5 py-3 text-base sm:text-xl font-bold bg-${offre.colorClass}`} onClick={() => handleAddToCart(offre)}>
+                                <span className="font-normal" >Prix pour {offre.nombre} billets:</span> {offre.prix}€
+                                </button>
                         </div>
                     ))}
                 </div>
