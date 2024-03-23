@@ -1,5 +1,4 @@
 "use client";
-import { redirect } from 'next/dist/server/api-utils';
 // login page front
 import { useEffect, useState } from 'react';
 import { useSession, signIn } from 'next-auth/react';
@@ -15,25 +14,23 @@ export default function Login() {
   const { data: session } = useSession()
   const router = useRouter();
 
-  useEffect(() => {
-    if (session) {
-      // Rediriger l'utilisateur vers la page protégée
-      router.push('/checkout');
-    }
-  }, [session]); // Ajouter router à la liste des dépendances
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await signIn('credentials', { redirect: false, email, password });
+    const callbackUrl = localStorage.getItem('redirectAfterLogin'); // Utiliser la page d'accueil comme fallback
+    console.log(callbackUrl);
+    const result = await signIn('credentials', {
+      redirect: false, // Gérer manuellement la redirection
+      email, 
+      password,
+      callbackUrl,
+    });
   
     if (result?.error) {
       setMessage('Email ou mot de passe incorrect');
     } else {
-      // Si la connexion réussit, le rôle de l'utilisateur est déjà inclus dans la session
-      // Rediriger vers la page où l'utilisateur était avant la connexion
-      window.location.href = '/checkout';
-
-      
+      // Redirection vers la page souhaitée
+      router.push(callbackUrl);
     }
   };
 

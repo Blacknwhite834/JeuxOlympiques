@@ -28,7 +28,10 @@ export async function GET(req, context) {
     try {
         const vente = await prisma.vente.findUnique({
             where: { id: id },
-            include: { user: true },
+            include: { 
+                user: true,
+                offre: true,
+            },
         });
 
         if (!userId || vente.user.id !== userId) {
@@ -44,7 +47,7 @@ export async function GET(req, context) {
 
         const encryptedDataForQRCode = CryptoJS.AES.encrypt(dataForQRCode, process.env.SECRET_KEY).toString();
 
-        return new Response(JSON.stringify({qrData: encryptedDataForQRCode}), {
+        return new Response(JSON.stringify({qrData: encryptedDataForQRCode, offre: vente.offre}), {
             status: 200,
             headers: {
                 "Content-Type": "application/json",

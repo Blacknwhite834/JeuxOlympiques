@@ -1,9 +1,11 @@
 "use client";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 
 export default function Hamburger({ bgColor, borderColor }) {
     const [isOpen, setIsOpen] = useState(false);
+    const { data: session } = useSession();
 
     const handleClick = () => {
         if (isOpen) {
@@ -34,6 +36,12 @@ export default function Hamburger({ bgColor, borderColor }) {
                 <a href="/" className="text-black text-4xl border-t-2 border-black pt-2">Accueil</a>
                 <a href="/billetterie" className="text-black text-4xl">Billetterie</a>
                 <a href="/panier" className="text-black text-4xl">Panier</a>
+                {session ? (
+                    <button onClick={() => signOut()} className="text-black text-4xl">Déconnexion</button>
+                ) : (
+                    <Link href="/login" className="text-black text-4xl">Connexion</Link>
+                )
+                }
             </div>
         </div>
 

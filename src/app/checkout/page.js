@@ -13,9 +13,10 @@ export default function Checkout() {
 
     useEffect(() => {
         if (!session) {
+            localStorage.setItem('redirectAfterLogin', window.location.pathname);
             // Rediriger l'utilisateur vers la page de connexion s'il n'est pas authentifié
             signIn();
-        }
+        } 
     
     }, [session, status]);
 
