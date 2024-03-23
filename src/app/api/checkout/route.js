@@ -27,7 +27,11 @@ export async function POST(req) {
     console.log(body);
 
     try {
-        
+        const user = await prisma.user.findUnique({
+            where: {
+                id: userId,
+            },
+        });
 
         // Créer un paiement avec Stripe
         const paymentIntent = await stripe.paymentIntents.create({
@@ -60,8 +64,12 @@ export async function POST(req) {
             },
         });
 
-        return new Response(JSON.stringify(vente), {
-            status: 201,
+        const venteId = vente.id;
+        console.log("Vente créée avec succès : ", venteId);
+
+
+        return new Response(JSON.stringify({ success: true, venteId: venteId }), {
+            status: 200,
             headers: {
                 "Content-Type": "application/json",
             },

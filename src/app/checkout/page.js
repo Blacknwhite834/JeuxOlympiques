@@ -5,10 +5,11 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import Header from "../components/header";
 import { signIn, useSession } from "next-auth/react";
 import { getToken } from "next-auth/jwt";
+import { useRouter } from "next/navigation";
 
 export default function Checkout() {
     const { data: session, status } = useSession();
-
+    const router = useRouter();
 
     useEffect(() => {
         if (!session) {
@@ -25,6 +26,8 @@ export default function Checkout() {
     const [isProcessing, setIsProcessing] = useState(false);
     const [checkoutError, setCheckoutError] = useState("");
     const [checkoutSuccess, setCheckoutSuccess] = useState(false);
+
+   
 
     const handlePaymentSubmission = async (event) => {
 
@@ -71,9 +74,10 @@ export default function Checkout() {
             setIsProcessing(false);
         } else {
             setCheckoutSuccess(true);
-            clearCart(); // Nettoyez le panier après un paiement réussi
+            router.push(`/checkout/success/${paymentResult.venteId}`);
+            clearCart();
         }
-    };
+    }
 
     return (
         <div className="flex flex-col min-h-screen">
