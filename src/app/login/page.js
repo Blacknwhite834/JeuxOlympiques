@@ -30,7 +30,7 @@ export default function Login() {
       setMessage('Email ou mot de passe incorrect');
     } else {
       // Redirection vers la page souhaitée
-      router.push(callbackUrl);
+      router.push(callbackUrl || '/');
     }
   };
 

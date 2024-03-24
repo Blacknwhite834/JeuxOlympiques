@@ -32,11 +32,11 @@ body {
 
 /* modify the scroll bar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: white;
+  background: rgb(224, 224, 224);
 }
 
 ::-webkit-scrollbar-thumb {

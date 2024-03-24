@@ -82,15 +82,15 @@ export default function Header({ color, bgColor, borderColor}) {
             </div>
 
             <div className="hidden sm:flex justify-end items-center gap-5 text-xl xl:text-2xl">
-                <Link href="/" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-orange-300 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Accueil
+                <Link href="/" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#D7C378] after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Accueil
                 </Link>
-                <Link href="/billetterie" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-orange-300 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Billetterie
+                <Link href="/billetterie" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#D7C378] after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Billetterie
                 </Link>
-                <Link href="/panier" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-orange-300 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Panier
+                <Link href="/panier" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#D7C378] after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Panier
                 </Link>
 
                 <div className="flex justify-end items-center gap-5 text-xl xl:text-2xl relative h-fit" ref={menuRef}>
-                <button onClick={handleMenu} className="stroke-orange-300">
+                <button onClick={handleMenu} className="stroke-[#D7C378]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="41" height="41" viewBox="0 0 41 41" fill="none">
                 <g clip-path="url(#clip0_51_2)">
                 <path d="M7.995 34.85C9.30185 32.7049 11.1385 30.932 13.3285 29.7018C15.5185 28.4716 17.9881 27.8254 20.5 27.8254C23.0119 27.8254 25.4815 28.4716 27.6715 29.7018C29.8614 30.932 31.6981 32.7049 33.005 34.85M20.5 23.4286C22.4418 23.4286 24.304 22.6572 25.677 21.2842C27.0501 19.9111 27.8214 18.0489 27.8214 16.1071C27.8214 14.1654 27.0501 12.3031 25.677 10.9301C24.304 9.55708 22.4418 8.78571 20.5 8.78571C18.5582 8.78571 16.696 9.55708 15.323 10.9301C13.9499 12.3031 13.1786 14.1654 13.1786 16.1071C13.1786 18.0489 13.9499 19.9111 15.323 21.2842C16.696 22.6572 18.5582 23.4286 20.5 23.4286Z" stroke="" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -105,14 +105,17 @@ export default function Header({ color, bgColor, borderColor}) {
                 </button>
 
                 {menu && (
-                        <div className="absolute right-0 z-50 bg-zinc-100 text-black rounded-md shadow-lg mt-2" style={{ top: menuRef.current ? menuRef.current.offsetHeight + 'px' : '0px' }}>
+                        <div className="absolute right-0 z-50 bg-zinc-100 text-base text-black rounded-md shadow-lg mt-2 flex justify-center items-start flex-col" style={{ top: menuRef.current ? menuRef.current.offsetHeight + 'px' : '0px' }}>
                             {session ? (
                                 <>
-                                    <div className="px-4 py-2">{session.user.name}</div>
-                                    <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => signOut()}>Déconnexion</div>
+                                    <span className="px-4 py-2 font-bold">Profile</span>
+                                    <div className="h-0.5 bg-black w-full"></div>
+                                    <div className="px-4 pt-2 pb-1">{session.user.name}</div>
+                                    <div className="px-4 pb-2 pt-1">{session.user.email}</div>
+                                    <div className="px-4 py-2 hover:opacity-70 cursor-pointer w-full text-center" onClick={() => signOut()}>Déconnexion</div>
                                 </>
                             ) : (
-                                <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => signIn()}>Connexion</div>
+                                <div className="px-4 py-2 hover:opacity-70 cursor-pointer w-full text-center" onClick={() => signIn()}>Connexion</div>
                             )}
                         </div>
                     )}

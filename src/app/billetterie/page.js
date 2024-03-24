@@ -37,10 +37,10 @@ export default function Billetterie() {
             <main className="flex-grow w-full flex justify-center items-center">
                 <div className="w-full flex flex-col xl:flex-row justify-center items-center gap-5 sm:gap-16 mt-5 sm:mt-16 px-10 h-full">
                     {offres.map(offre => (
-                        <div key={offre.id} className={`flex flex-col justify-between items-center gap-5 sm:gap-10 xl:gap-16 rounded-[30px] sm:rounded-[50px] border-8 py-5 sm:py-10 px-5 shadow-xl border-${colorRandom} w-full sm:w-1/2`}>
+                        <div key={offre.id} className={`flex flex-col justify-between items-center gap-5 sm:gap-10 xl:gap-16 rounded-[30px] sm:rounded-[50px] border-8 py-5 sm:py-10 px-5 shadow-xl border-[#D7C378] w-full sm:w-1/2`}>
                             <h1 className="text-2xl sm:text-4xl text-black font-bold text-center">{offre.title}</h1>
                             <p className="text-black text-center text-base sm:text-2xl">{offre.description}</p>
-                            <button className={`text-white rounded-full px-5 py-3 text-base sm:text-xl font-bold bg-black`} onClick={() => handleAddToCart(offre)}>
+                            <button className={`text-white rounded-full px-5 py-3 text-base sm:text-xl font-bold bg-black hover:opacity-70 transition-all duration-300 ${colorRandom()}`} onClick={() => handleAddToCart(offre)}>
                                 <span className="font-normal" >Prix pour {offre.nombre} billets:</span> {offre.prix}€
                                 </button>
                         </div>

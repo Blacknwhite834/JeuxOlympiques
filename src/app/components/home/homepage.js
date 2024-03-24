@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Homepage() {
     return (
-        <main className="w-full h-[calc(100dvh)] bg-[url('/background.jpg')] bg-cover bg-center flex flex-col rounded-[30px] sm:rounded-[50px] border-[10px] sm:border-[20px] border-white">
+        <main className="w-full h-[calc(100dvh)] bg-[url('/background.jpg')] bg-cover bg-center flex flex-col rounded-[30px] sm:rounded-[50px] border-[10px] sm:border-[15px] border-white">
             <Header color={{ color: "white" }} bgColor="bg-white" borderColor="border-white"/>
             
             <div className="flex-grow flex flex-col justify-center items-center w-full px-5">
