@@ -15,6 +15,9 @@ export default function Offres() {
     }, []);
 
     const handleDelete = (id) => {
+        if (!confirm("Êtes-vous sûr de vouloir supprimer cette offre?")) {
+            return;
+        } else {
         fetch(`/api/offres/${id}`, {
             method: 'DELETE'
         })
@@ -25,6 +28,7 @@ export default function Offres() {
                 setOffres(offres.filter(offre => offre.id !== id));
             })
             .catch(error => console.error("Erreur lors de la suppression de l'offre:", error));
+        }
     }
 
     return (

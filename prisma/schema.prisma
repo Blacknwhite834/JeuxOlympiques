@@ -37,8 +37,8 @@ model Vente {
   date      DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id])
   userId    String
-  offre     Offre    @relation(fields: [offreId], references: [id])
-  offreId   String
+  offre     Offre?   @relation(fields: [offreId], references: [id])
+  offreId   String?
   total     Int
   venteKey  String   // Clé générée lors de l'achat
 }

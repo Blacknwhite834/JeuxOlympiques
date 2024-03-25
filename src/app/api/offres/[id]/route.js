@@ -119,6 +119,15 @@ export async function DELETE(req, context) {
     }
 
     try {
+        await prisma.vente.updateMany({
+            where: {
+                offreId: id,
+            },
+            data: {
+                offreId: null,
+            }
+        });
+        
         await prisma.offre.delete({
             where: {
                 id: id,
