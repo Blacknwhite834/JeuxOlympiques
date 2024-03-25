@@ -17,21 +17,8 @@ export default function AdminOnlyPage() {
       .catch(err => console.error('Erreur lors de la récupération des ventes:', err));
   }, []);
 
-  useEffect(() => {
-    // Attendre que la session soit chargée pour éviter les redirections inutiles pendant le chargement de la session
-    if(status === "authenticated" && session.user.role !== 'ADMIN') {
-      // Si l'utilisateur est authentifié mais n'est pas administrateur, rediriger
-      router.push('/'); // Rediriger vers la page d'accueil ou une page "Accès refusé" appropriée
-    }
-  }, [session, status, router]); // Ajouter router et status aux dépendances pour éviter les effets inutiles
-
   if (status === "loading") {
     return <p>Chargement...</p>;
-  }
-
-  if (session?.user?.role !== 'ADMIN') {
-    // Cette condition peut être omise si la redirection est gérée correctement par useEffect
-    return null; // En principe, cette ligne ne sera jamais exécutée si la redirection fonctionne
   }
 
   const borderColorRandom = () => {

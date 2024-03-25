@@ -1,4 +1,5 @@
 "use client";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -33,6 +34,7 @@ export default function HamburgerDashboard() {
                 <Link href="/dashboard"><img src="/logo.png" alt="Paris 2024" className="w-[100px] h-[100px]" /></Link>
                 <a href="/dashboard" className="text-black text-4xl border-t-2 border-black pt-2">Accueil</a>
                 <a href="/dashboard/offre" className="text-black text-4xl">Offres</a>
+                <button onClick={() => signOut()} className="text-black text-4xl">Déconnexion</button>
             </div>
         </div>
 

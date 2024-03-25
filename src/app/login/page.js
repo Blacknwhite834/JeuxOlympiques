@@ -1,7 +1,7 @@
 "use client";
 // login page front
 import { useEffect, useState } from 'react';
-import { useSession, signIn } from 'next-auth/react';
+import { useSession, signIn, getSession } from 'next-auth/react';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Link from 'next/link';
@@ -11,7 +11,6 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const { data: session } = useSession()
   const router = useRouter();
 
 
@@ -30,7 +29,13 @@ export default function Login() {
       setMessage('Email ou mot de passe incorrect');
     } else {
       // Redirection vers la page souhaitée
-      router.push(callbackUrl || '/');
+      const session = await getSession();
+      if (session.user.role === 'ADMIN' || session.user.role === 'ORGANISATEUR') {
+        router.push('/dashboard');
+      } else {
+      router.push(callbackUrl);
+      }
+
     }
   };
 

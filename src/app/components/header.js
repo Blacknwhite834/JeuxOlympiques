@@ -4,13 +4,16 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Hamburger from "./hamburger";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useCart } from "../CartContext";
 
 export default function Header({ color, bgColor, borderColor}) {
     const [decompte, setDecompte] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
     const [menu, setMenu] = useState(false);
     const { data: session } = useSession();
     const menuRef = useRef(); // Référence pour le bouton/menu
+    const { cartItems, clearCart } = useCart();
 
+    const items = cartItems.length;
 
 
     useEffect(() => {
@@ -86,7 +89,7 @@ export default function Header({ color, bgColor, borderColor}) {
                 </Link>
                 <Link href="/billetterie" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#D7C378] after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Billetterie
                 </Link>
-                <Link href="/panier" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#D7C378] after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Panier
+                <Link href="/panier" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#D7C378] after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Panier {items > 0 && <span className="text-xl">+{items}</span>}
                 </Link>
 
                 <div className="flex justify-end items-center gap-5 text-xl xl:text-2xl relative h-fit" ref={menuRef}>
