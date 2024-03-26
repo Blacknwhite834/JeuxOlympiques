@@ -7,6 +7,7 @@ import { signIn, useSession } from "next-auth/react";
 import { getToken } from "next-auth/jwt";
 import { useRouter } from "next/navigation";
 import { countries } from "countries-list";
+import Footer from "../components/footer";
 
 
 export default function Checkout() {
@@ -111,8 +112,8 @@ export default function Checkout() {
             <Header bgColor="bg-black" color={{ color: "black" }} borderColor="border-black"/>
             <h1 className="text-4xl sm:text-6xl xl:text-8xl text-black font-bold text-center px-5">Paiement</h1>
 
-            <div className="flex flex-col w-full sm:w-1/2 mx-auto gap-5 sm:gap-10 mt-5 sm:mt-16 px-10 h-full">
-            <h2 className="text-2xl sm:text-4xl font-bold">Récapitulatif de la commande</h2>
+            <div className="flex flex-col w-full sm:w-1/2 mx-auto gap-5 sm:gap-10 mt-5 sm:mt-10 px-5 sm:px-10 h-full">
+            <h2 className="text-2xl sm:text-4xl font-bold text-center">Récapitulatif de la commande</h2>
             <ul className="flex flex-col gap-5">
                 {cartItems.map((item) => (
                     <li key={item.id} className="flex justify-between items-center">
@@ -125,13 +126,16 @@ export default function Checkout() {
             {checkoutSuccess ? (
                 <p>Paiement réussi! Merci pour votre achat.</p>
             ) : (
-                <form onSubmit={handlePaymentSubmission}>
+                <form onSubmit={handlePaymentSubmission} className="flex flex-col gap-5">
+        <h2 className="text-2xl font-bold">Détails de facturation</h2>
+        <div className="h-0.5 bg-gray-300 mb-2"></div>
        <div>
         <input
             type="text"
             placeholder="Nom"
             required
             onChange={(e) => setBillingDetails({ ...billingDetails, name: e.target.value })}
+            className="w-full px-3 py-1 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         />
     </div>
     <div>
@@ -140,6 +144,7 @@ export default function Checkout() {
             placeholder="Adresse ligne 1"
             required
             onChange={(e) => setBillingDetails({ ...billingDetails, address: { ...billingDetails.address, line1: e.target.value }})}
+            className="w-full px-3 py-1 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         />
     </div>
     <div>
@@ -148,6 +153,7 @@ export default function Checkout() {
             placeholder="Ville"
             required
             onChange={(e) => setBillingDetails({ ...billingDetails, address: { ...billingDetails.address, city: e.target.value }})}
+            className="w-full px-3 py-1 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         />
             </div>
             <div>
@@ -162,6 +168,7 @@ export default function Checkout() {
               address: { ...billingDetails.address, country: e.target.value },
             })
           }
+            className="w-full px-3 py-1 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         >
           {countriesArray.map((country) => (
                         <option key={country.code} value={country.code}>
@@ -170,13 +177,18 @@ export default function Checkout() {
                     ))}
         </select>
       </div>
-                    <CardElement />
+        <h2 className="text-2xl font-bold">Paiement</h2>
+        <div className="h-0.5 bg-gray-300 mb-2"></div>
+                    <CardElement className="border border-gray-300 rounded-md p-3" />
                     <button disabled={isProcessing || !stripe || !elements} className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-opacity-70 transition duration-300 mt-5 text-center">
                         {isProcessing ? "Traitement…" : "Payer"}
                     </button>
                 </form>
             )}
             </div>
+
+            <Footer />
+            
         </div>
     );
 }

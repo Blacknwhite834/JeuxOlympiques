@@ -66,7 +66,8 @@ export default function SuccessPage() {
                 <button className="bg-black text-white px-5 py-3 rounded-full hover:bg-opacity-70 transition duration-300" onClick={downloadQR}>Télécharger le code QR</button>
                 </div>
 
-                <div className="bg-zinc-100 rounded-lg p-5 sm:p-10 flex flex-col gap-3 w-full sm:w-fit">
+        
+            <div className="bg-zinc-100 rounded-lg p-5 sm:p-10 flex flex-col gap-3 w-fit mt-5">
             <h2 className="text-2xl font-bold">Votre commande</h2>
             
             <div className="h-0.5 bg-black my-2"></div>
@@ -83,6 +84,7 @@ export default function SuccessPage() {
             <span className="font-bold">{offre.prix}€</span>
             </div>
             </div>
+      
             </main>
         </div>
     );

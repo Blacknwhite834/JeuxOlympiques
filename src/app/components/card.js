@@ -1,5 +1,5 @@
 export default function Card({ title, description, image, textColor, inverse = false }) {
-    const containerClasses = `w-full h-fit flex items-center 2xl:items-start  ${inverse ? "flex-col 2xl:flex-row-reverse" : "flex-col 2xl:flex-row"}`;
+    const containerClasses = `w-full h-fit flex items-center  ${inverse ? "flex-col 2xl:flex-row-reverse" : "flex-col 2xl:flex-row"}`;
 
   return (
     <div className={containerClasses}>
