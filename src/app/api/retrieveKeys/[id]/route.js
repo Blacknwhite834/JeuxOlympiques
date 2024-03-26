@@ -14,7 +14,7 @@ export async function GET(req, context) {
     }
 
     const userId = session?.sub;
-    console.log(userId);
+    // console.log(userId);
 
     if (!session) {
         return new Response(JSON.stringify({ error: "Non autorisé à accéder à cette page" }), {
@@ -34,8 +34,10 @@ export async function GET(req, context) {
             },
         });
 
+        // console.log(" vente.user.id : ", vente.user.id);
+
         if (!userId || vente.user.id !== userId) {
-            return new Response(JSON.stringify({ error: "Non autorisé" }), {
+            return new Response(JSON.stringify({ error: "Non autorisé." }), {
                 status: 401,
                 headers: {
                     "Content-Type": "application/json",

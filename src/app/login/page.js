@@ -32,8 +32,10 @@ export default function Login() {
       const session = await getSession();
       if (session.user.role === 'ADMIN' || session.user.role === 'ORGANISATEUR') {
         router.push('/dashboard');
+      } if (session.user.role === 'EMPLOYE') {
+        router.push('/scanner');
       } else {
-      router.push(callbackUrl);
+        router.push(callbackUrl);
       }
 
     }

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server"
 
 export { default } from "next-auth/middleware"
 
-export const middleware = async (req, res, options) => {
+export const middleware = async (req) => {
     // Add your own logic here or extend the middleware provided by NextAuth
     const token = await getToken({ req, secret: process.env.SECRET })
     const { pathname } = req.nextUrl

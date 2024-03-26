@@ -15,7 +15,8 @@ export default function Billetterie() {
         fetch('/api/offres')
             .then(response => response.json())
             .then(data => {
-                setOffres(data);
+                const sortedData = data.sort((a, b) => a.prix - b.prix);
+                setOffres(sortedData);
             })
             .catch(error => console.error("Erreur lors de la récupération des offres:", error));
     }, []);

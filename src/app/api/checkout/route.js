@@ -23,8 +23,8 @@ export async function POST(req) {
     const userId = session?.sub;
 
     const body = await req.json();
-    const { paymentMethodId, total, offreId } = body;
-    console.log(body);
+    const { paymentMethodId, total, offreId, billingDetails } = body;
+    // console.log(body);
 
     try {
         const user = await prisma.user.findUnique({
@@ -33,9 +33,8 @@ export async function POST(req) {
             },
         });
 
-        // Créer un paiement avec Stripe
         const paymentIntent = await stripe.paymentIntents.create({
-            amount: total, // Assurez-vous que c'est en centimes
+            amount: total, 
             currency: 'eur',
             payment_method: paymentMethodId,
             confirmation_method: "automatic",
@@ -43,10 +42,8 @@ export async function POST(req) {
             return_url: `${process.env.NEXTAUTH_URL}/checkout/success`,
         });
 
-        // Générer une clé unique pour la vente
         const venteKey = CryptoJS.enc.Base64.stringify(CryptoJS.lib.WordArray.random(16));
 
-        // Insérer une nouvelle vente dans la base de données avec les relations
         const vente = await prisma.vente.create({
             data: {
                 user: {
@@ -65,7 +62,8 @@ export async function POST(req) {
         });
 
         const venteId = vente.id;
-        console.log("Vente créée avec succès : ", venteId);
+        // console.log("Vente créée avec succès : ", venteId);
+        // console.log("Paiement créé avec succès : ", paymentIntent);
 
 
         return new Response(JSON.stringify({ success: true, venteId: venteId }), {

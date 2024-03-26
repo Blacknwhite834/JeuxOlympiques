@@ -6,20 +6,26 @@ import Header from "../components/header";
 import { signIn, useSession } from "next-auth/react";
 import { getToken } from "next-auth/jwt";
 import { useRouter } from "next/navigation";
+import { countries } from "countries-list";
+
 
 export default function Checkout() {
     const { data: session, status } = useSession();
     const router = useRouter();
-    // const [billingDetails, setBillingDetails] = useState({
-    //     name: "",
-    //     address: {
-    //       line1: "",
-    //       city: "",
-    //       state: "",
-    //       postal_code: "",
-    //       country: "",
-    //     },
-    //   });
+    const [billingDetails, setBillingDetails] = useState({
+        name: "",
+        address: {
+          line1: "",
+          city: "",
+          country: "",
+        },
+      });
+
+      const countriesArray = Object.keys(countries).map((code) => ({
+        code: code,
+        name: countries[code].name
+    }));
+
 
     useEffect(() => {
         if (!session) {
@@ -57,8 +63,16 @@ export default function Checkout() {
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
             card: cardElement,
-        
+            billing_details: {
+                name: billingDetails.name,
+                address: {
+                  line1: billingDetails.address.line1,
+                  city: billingDetails.address.city,
+                  country: billingDetails.address.country,
+                },
+              },
         });
+
 
         if (error) {
             setCheckoutError(error.message);
@@ -77,7 +91,6 @@ export default function Checkout() {
                 total: cartItems.reduce((acc, item) => acc + item.prix, 0), // Convertir le total en centimes
                 offreId: cartItems[0].id, // Supposer que vous voulez utiliser l'ID de la première offre dans le panier,
                 userId: session.user.id,
-                
             }),
         }).then(r => r.json());
 
@@ -113,7 +126,7 @@ export default function Checkout() {
                 <p>Paiement réussi! Merci pour votre achat.</p>
             ) : (
                 <form onSubmit={handlePaymentSubmission}>
-       {/* <div>
+       <div>
         <input
             type="text"
             placeholder="Nom"
@@ -136,7 +149,27 @@ export default function Checkout() {
             required
             onChange={(e) => setBillingDetails({ ...billingDetails, address: { ...billingDetails.address, city: e.target.value }})}
         />
-            </div>*/}
+            </div>
+            <div>
+        <label htmlFor="country">Pays :</label>
+        <select
+          id="country"
+          required
+          value={billingDetails.address.country}
+          onChange={(e) =>
+            setBillingDetails({
+              ...billingDetails,
+              address: { ...billingDetails.address, country: e.target.value },
+            })
+          }
+        >
+          {countriesArray.map((country) => (
+                        <option key={country.code} value={country.code}>
+                        {country.name}
+                        </option>
+                    ))}
+        </select>
+      </div>
                     <CardElement />
                     <button disabled={isProcessing || !stripe || !elements} className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-opacity-70 transition duration-300 mt-5 text-center">
                         {isProcessing ? "Traitement…" : "Payer"}
