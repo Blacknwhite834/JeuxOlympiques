@@ -1,5 +1,6 @@
 "use client";
 // login page front
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { useSession, signIn, getSession } from 'next-auth/react';
 import Header from '../components/header';
@@ -17,7 +18,6 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const callbackUrl = localStorage.getItem('redirectAfterLogin'); // Utiliser la page d'accueil comme fallback
-    console.log(callbackUrl);
     const result = await signIn('credentials', {
       redirect: false, // Gérer manuellement la redirection
       email, 
