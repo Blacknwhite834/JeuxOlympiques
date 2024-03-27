@@ -1,9 +1,11 @@
 "use client";
 // pages/register.js
+import React from 'react';
 import { useState } from 'react';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -11,6 +13,8 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
+
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,6 +44,8 @@ export default function Register() {
     try {
       const data = await response.json();
       setMessage(data.message);
+      router.push('/login');
+      console.log(" user created successfully")
     } catch (error) {
       // Gérer l'erreur si la réponse ne peut pas être convertie en JSON
       console.error('Erreur lors de la conversion de la réponse en JSON:', error);
