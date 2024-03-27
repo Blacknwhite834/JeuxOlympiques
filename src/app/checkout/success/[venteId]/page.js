@@ -62,8 +62,8 @@ export default function SuccessPage() {
                     <div className="bg-zinc-100 rounded-[30px] p-10 shadow-md">
                     <QRCodeCanvas value={qrData} level={"H"} ref={qrRef} renderAs={"canvas"}/>
                     </div>
-                <p>Voici votre billet électronique. Présentez ce code QR à l'entrée de l'événement.</p>
-                <button className="bg-black text-white px-5 py-3 rounded-full hover:bg-opacity-70 transition duration-300" onClick={downloadQR}>Télécharger le code QR</button>
+                <p className="text-center">Voici votre billet électronique. <br/>Présentez ce code QR à l'entrée de l'événement.</p>
+                {/* <button className="bg-black text-white px-5 py-3 rounded-full hover:bg-opacity-70 transition duration-300" onClick={downloadQR}>Télécharger le code QR</button> */}
                 </div>
 
         

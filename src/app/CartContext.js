@@ -1,7 +1,7 @@
 // Cart context
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 
 const CartContext = createContext();
 
@@ -9,15 +9,22 @@ export const useCart = () => useContext(CartContext);
 
 
 export const CartProvider = ({ children }) => {
-    const [cartItems, setCartItems] = useState(() => {
-        // Tenter de récupérer les articles du panier à partir de localStorage lors de l'initialisation
-        const savedCartItems = localStorage.getItem('cartItems');
-        return savedCartItems ? JSON.parse(savedCartItems) : [];
-    });
+    const [cartItems, setCartItems] = useState([]);
+    const initialRender = useRef(true);
 
     useEffect(() => {
-        // Enregistrer les articles du panier dans localStorage chaque fois que cartItems change
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        if (JSON.parse(localStorage.getItem("cartItems"))) {
+            const storedCartItems = JSON.parse(localStorage.getItem("cartItems"));
+            setCartItems([...cartItems, ...storedCartItems]);
+        }
+    }, []);
+    
+    useEffect(() => {
+        if (initialRender.current) {
+            initialRender.current = false;
+            return;
+        }
+        window.localStorage.setItem("cartItems", JSON.stringify(cartItems));
     }, [cartItems]);
 
     const addToCart = (item) => {

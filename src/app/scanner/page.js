@@ -9,7 +9,7 @@ QrScanner.WORKER_PATH = '/qr-scanner-worker.min.js';
 
 export default function Scanner() {
     const { data: session, status } = useSession();
-
+    
     
     const [qrResult, setQrResult] = useState('');
     const [scanError, setScanError] = useState('');
@@ -20,9 +20,11 @@ export default function Scanner() {
     const videoRef = useRef(null);
     const qrScannerRef = useRef(null);
 
-    
+
+
     
     useEffect(() => {
+        
         qrScannerRef.current = new QrScanner(
             videoRef.current,
             (result) => handleScan(result),
@@ -73,7 +75,7 @@ export default function Scanner() {
         };
 
 
-
+        
         return (
             <div className="flex flex-col items-center justify-center h-screen space-y-5">
         <div className="flex justify-center items-center flex-col bg-zinc-100 p-5 rounded-lg shadow-lg gap-5">
