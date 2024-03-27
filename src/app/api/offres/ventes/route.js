@@ -15,6 +15,8 @@ export async function GET(req) {
         });
     }
 
+    const userCount = await prisma.user.count();
+
     const ventesParOffre = await prisma.offre.findMany({
         select: {
           id: true,
@@ -33,7 +35,7 @@ export async function GET(req) {
             nombreVentes: offre.ventes.length
         }))
 
-        return new Response(JSON.stringify(ventesCount), {
+        return new Response(JSON.stringify({ userCount, ventesCount }), {
             status: 200,
             headers: {
                 "Content-Type": "application/json",
