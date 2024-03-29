@@ -3,9 +3,9 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { useRouter } from 'next/navigation';
 import { SessionProvider, getSession } from 'next-auth/react';
-import Login from "./page";
+import Login from "../../login/page";
 import {useSession} from "next-auth/react";
-import { CartProvider } from "../CartContext";
+import { CartProvider } from "../../CartContext";
 import { signIn } from 'next-auth/react';
 
 jest.mock('next-auth/react', () => ({

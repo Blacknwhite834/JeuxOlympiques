@@ -1,3 +1,4 @@
+import React from "react";
 import { CartProvider } from "./CartContext";
 import Provider from "./Provider";
 import StripeProvider from "./StripeProvider";

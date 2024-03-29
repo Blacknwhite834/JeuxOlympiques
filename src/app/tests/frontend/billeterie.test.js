@@ -1,8 +1,8 @@
 import React, { use } from 'react';
 import { render, fireEvent, waitFor} from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Billetterie from './page';
-import { CartProvider } from '../CartContext';
+import Billetterie from '../../billetterie/page';
+import { CartProvider } from '../../CartContext';
 import { useRouter } from 'next/navigation';
 import { SessionProvider } from 'next-auth/react';
 

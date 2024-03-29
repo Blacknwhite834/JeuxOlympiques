@@ -9,7 +9,7 @@ export default function Footer() {
             <Link href="/" className="text-white text-xl pt-5 sm:pt-0 border-t-2 sm:border-t-0 border-l-none sm:border-l-2 border-white pl-0 sm:pl-5">Accueil</Link>
             <Link href="/billetterie" className="text-white text-xl">Billetterie</Link>
             <Link href="/panier" className="text-white text-xl">Panier</Link>
-            <span className="text-[#D7C378] text-xl">© Paris 2024</span>
+            <span className="text-white text-xl">© Paris 2024</span>
         </div>
     )
 }

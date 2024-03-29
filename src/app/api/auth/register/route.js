@@ -48,6 +48,8 @@ export async function POST(req) {
       },
     });
 
+    console.log('user is ' + user.name, user.email);
+
     // Réponse indiquant la création réussie de l'utilisateur
     return new Response(JSON.stringify({ message: "Utilisateur créé avec succès." }), {
       status: 201,

@@ -1,9 +1,9 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom';
-import Home from "./page";
+import Home from "../../page";
 import { SessionProvider } from "next-auth/react";
-import { CartProvider } from "./CartContext";
+import { CartProvider } from "../../CartContext";
 
 describe("Home Component Tests", () => {
     test("renders the homepage", () => {

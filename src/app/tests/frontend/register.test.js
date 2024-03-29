@@ -3,8 +3,8 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { useRouter } from 'next/navigation'; // Importer next/router au lieu de next/navigation
 import { SessionProvider } from 'next-auth/react';
-import Register from "./page";
-import { CartProvider } from "../CartContext";
+import Register from "../../register/page";
+import { CartProvider } from "../../CartContext";
 
 jest.mock('next/navigation', () => ({
     useRouter: jest.fn(),
@@ -61,5 +61,8 @@ describe('Register Component Tests', () => {
             expect(screen.getByText('Utilisateur créé avec succès')).toBeInTheDocument();
             expect(mockPush).toHaveBeenCalledWith('/login');
         });
+
+        
+
     });
 });
