@@ -53,8 +53,8 @@ describe('Register Component Tests', () => {
 
         fireEvent.change(screen.getByPlaceholderText('Nom'), { target: { value: 'John Doe' } });
         fireEvent.change(screen.getByPlaceholderText('E-mail'), { target: { value: 'john@mail.com' } });
-        fireEvent.change(screen.getByPlaceholderText('Mot de passe'), { target: { value: 'password' } });
-        fireEvent.change(screen.getByPlaceholderText('Confirmer mot de passe'), { target: { value: 'password' } });
+        fireEvent.change(screen.getByPlaceholderText('Mot de passe'), { target: { value: 'Password1@' } });
+        fireEvent.change(screen.getByPlaceholderText('Confirmer mot de passe'), { target: { value: 'Password1@' } });
         fireEvent.click(screen.getByText('S\'inscrire'));
 
          waitFor(() => {

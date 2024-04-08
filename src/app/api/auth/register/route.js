@@ -8,13 +8,13 @@ const prisma = new PrismaClient();
 
 export async function POST(req) {
   // Extraction des champs requis depuis le corps de la requête
-  console.log('req.body' + req.body);
+  // console.log('req.body' + req.body);
 
   const body = await req.json();
   const { email, password, name } = body;
 
-  console.log('email reqbody is ' + email);
-  console.log('name reqbody is ' + name);
+  // console.log('email reqbody is ' + email);
+  // console.log('name reqbody is ' + name);
 
   try {
     // Vérification de l'existence préalable de l'utilisateur
@@ -24,7 +24,7 @@ export async function POST(req) {
 
     if (existingUser) {
       // Si un utilisateur existe déjà avec cet email, renvoie une erreur
-      return new Response(JSON.stringify({ message: "Erreur" }), {
+      return Response(JSON.stringify({ message: "Erreur" }), {
         status: 400,
         headers: {
           "Content-Type": "application/json",
@@ -36,7 +36,7 @@ export async function POST(req) {
     const hashedPassword = bcrypt.hashSync(password, 10);
 
     const accountKey = CryptoJS.enc.Base64.stringify(CryptoJS.lib.WordArray.random(16));
-    
+
 
     // Création de l'utilisateur dans la base de données
     const user = await prisma.user.create({
@@ -48,11 +48,10 @@ export async function POST(req) {
       },
     });
 
-    console.log('user is ' + user.name, user.email);
 
     // Réponse indiquant la création réussie de l'utilisateur
-    return new Response(JSON.stringify({ message: "Utilisateur créé avec succès." }), {
-      status: 201,
+    return new Response(JSON.stringify({ message: "Utilisateur créé avec succès" }), {
+      status: 200,
       headers: {
         "Content-Type": "application/json",
       },

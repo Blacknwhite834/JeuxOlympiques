@@ -1,4 +1,5 @@
 "use client"
+import React from "react";
 import { useEffect, useRef, useState } from "react"
 import Chart from "chart.js/auto"
 

@@ -1,53 +1,48 @@
-import React from "react";
-import supertest from 'supertest';
-import express from 'express';
-import { POST as registerHandler } from "@/app/api/auth/register/route";
 import { createMocks } from "node-mocks-http";
+import { PrismaClient } from "@prisma/client";
+import { POST } from "@/app/api/auth/register/route";
 
-
-jest.mock('@prisma/client', () => ({
-  __esModule: true,
-  PrismaClient: jest.fn().mockImplementation(() => ({
-    user: {
-      findUnique: jest.fn().mockResolvedValue(null),
-      create: jest.fn().mockImplementation((userData) => Promise.resolve({ ...userData.data, id: 123 })),
-    },
-  })),
-}));
-
-import { PrismaClient } from '@prisma/client'; // Importer correctement PrismaClient
-
-const prisma = new PrismaClient(); 
-
+const prisma = new PrismaClient();
 
 describe('POST /api/auth/register', () => {
-  test('should create a user and generate an accountKey', async () => {
-    
+  it('should create a user and generate an accountKey', async () => {
     const { req, res } = createMocks({
       method: 'POST',
-      body: { email: 'test@mail.com', password: 'password', name: 'John Doe' },
-    });
-
-    req.json = jest.fn().mockResolvedValue(req.body);
-    
-    await registerHandler(req, res);
-    expect(res._getStatusCode()).toBe(200);
-    // Vérifie que le compte a été créé avec les bonnes informations
-    expect(prisma.create).toHaveBeenCalledWith({
-      data: {
+      body: {
         email: 'test@mail.com',
-        password: expect.any(String),
-        name: 'John Doe',
-        accountKey: expect.any(String),
+        password: 'Password1@',
+        name: 'John Doe'
+      },
+      headers: {
+        'Content-Type': 'application/json',
       },
     });
-  }
-  );
 
-  afterEach(() => {
-    jest.resetAllMocks(); // Réinitialise tous les mocks
+    req.json = jest.fn().mockReturnValue(req.body);
+
+    await POST(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+    
+    // Vérification de la création de l'utilisateur
+    const user = await prisma.user.findUnique({
+      where: {
+        email: 'test@mail.com',
+      },
+    });
+
+    expect(user).toBeTruthy();
+
+    expect(user.accountKey).toBeTruthy(); 
+
+    await prisma.user.delete({
+      where: {
+        email: 'test@mail.com',
+      },
+    });
+
+    await prisma.$disconnect();
   });
 });
-
 
 

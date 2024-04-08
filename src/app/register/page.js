@@ -69,12 +69,12 @@ export default function Register() {
       <Header bgColor="bg-black" color={{ color: "black" }} borderColor="border-black"/>
       <h1 className="text-4xl sm:text-6xl xl:text-8xl text-black font-bold text-center px-5">Veuillez vous inscrire</h1>
       <main className="flex-1 flex justify-center items-center flex-col">
-        <p className='text-black text-base font-normal'>Le mot de passe doit contenir au moins une majuscule, un chiffre, un caractère spécial et faire au moins 8 caractères de longueur.</p>
+        <p className='text-black text-sm  sm:text-base font-normal px-5 text-center py-3'>Le mot de passe doit contenir au moins une majuscule, un chiffre, un caractère spécial et faire au moins 8 caractères de longueur.</p>
         {message && <p className=' text-red-500 font-bold text-base'>{message}</p>}
       <form onSubmit={handleSubmit} className='flex flex-col justify-center items-center sm:items-start gap-5 w-full sm:w-fit px-5 sm:px-0 mt-5'>
         <input type="text" placeholder="Nom" value={name} onChange={(e) => setName(e.target.value)} required className='py-2 w-full sm:w-fit px-5 pr-0 sm:pr-56 border-2 border-black rounded-full placeholder:text-black text-base sm:text-xl'/>
         <input type="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} required className='py-2 w-full sm:w-fit px-5 pr-0 sm:pr-56 border-2 border-black rounded-full placeholder:text-black text-base sm:text-xl'/>
-        <div className="relative">
+        <div className="relative w-full sm:w-fit">
   <input
     type="password"
     placeholder="Mot de passe"
@@ -118,7 +118,7 @@ export default function Register() {
     </svg>
   )}
 </div>
-<div className="relative">
+<div className="relative w-full sm:w-fit">
 <input
     type="password"
     placeholder="Confirmer mot de passe"

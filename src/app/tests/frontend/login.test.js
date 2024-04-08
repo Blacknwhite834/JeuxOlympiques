@@ -59,14 +59,14 @@ test('connexion avec des identifiants valides', async () => {
             );
   
       fireEvent.change(screen.getByPlaceholderText('E-mail'), { target: { value: 'test@example.com' } });
-      fireEvent.change(screen.getByPlaceholderText('Mot de passe'), { target: { value: 'password' } });
+      fireEvent.change(screen.getByPlaceholderText('Mot de passe'), { target: { value: 'Password1@' } });
       fireEvent.click(screen.getByText('Se connecter'));
   
       await waitFor(() => {
         expect(signIn).toHaveBeenCalledWith('credentials', {
           redirect: false,
           email: 'test@example.com',
-          password: 'password',
+          password: 'Password1@',
           callbackUrl: null,
         });
         // Ici, vous pouvez ajouter plus de vérifications, comme la redirection ou l'affichage de messages d'erreur
