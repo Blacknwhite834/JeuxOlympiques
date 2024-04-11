@@ -7,7 +7,6 @@ import bcrypt from 'bcryptjs';
 const prisma = new PrismaClient();
 
 const handler = NextAuth({
-  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -20,7 +19,7 @@ const handler = NextAuth({
         const user = await prisma.user.findUnique({
           where: { email }
         });
-
+        
         if (user && bcrypt.compareSync(password, user.password)) {
           return {
             id: user.id, 
@@ -29,7 +28,7 @@ const handler = NextAuth({
             role: user.role,
           };
         }
-
+        
         // Return null if user data could not be retrieved
         
         return null;
@@ -60,6 +59,7 @@ const handler = NextAuth({
       return token;
     },
   },
+  secret: process.env.NEXTAUTH_SECRET,
   // Add other NextAuth configurations here
 });
 
