@@ -1,4 +1,5 @@
 "use client"
+import React from "react";
 import { useEffect, useState } from "react";
 import { useCart } from "@/app/CartContext";
 import { CardElement, useStripe, useElements, AddressElement } from "@stripe/react-stripe-js";

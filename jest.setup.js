@@ -1,5 +1,7 @@
 // jest.setup.js
 global.fetch = require('node-fetch');
+// jest.setup.js
+global.Canvas = require('canvas');
 
 
 global.Response = function(body, init) {

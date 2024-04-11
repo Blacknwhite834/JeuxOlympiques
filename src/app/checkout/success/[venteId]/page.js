@@ -1,4 +1,5 @@
 "use client"
+import React from "react";
 import { useEffect, useRef, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import QRCode, { QRCodeCanvas } from "qrcode.react";
@@ -26,7 +27,8 @@ export default function SuccessPage() {
                     }
                     setQrData(data.qrData);
                     setOffre(data.offre);
-                    console.log(data.offre);
+                    // console.log(data.qrData);
+                    // console.log(data.offre);
                 } catch (err) {
                     setError(err.message || 'An error occurred');
                 } finally {
@@ -37,18 +39,8 @@ export default function SuccessPage() {
         fetchKeys();
     }, [venteId]);
 
-    const downloadQR = () => {
-        const canvas = qrRef.current;
-        const image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-        const link = document.createElement("a");
-        link.href = image;
-        link.download = "qr-code.png";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
-
     if (isLoading) return <p>Loading...</p>;
+
     if (error) return <p>Error: {error}</p>;
 
 
@@ -60,7 +52,7 @@ export default function SuccessPage() {
             <main className="flex-grow w-full flex justify-center items-center flex-col xl:flex-row">
                 <div className="flex flex-col justify-center items-center gap-5 sm:gap-10 mt-5 sm:mt-16 px-10 h-full">
                     <div className="bg-zinc-100 rounded-[30px] p-10 shadow-md">
-                    <QRCodeCanvas value={qrData} level={"H"} ref={qrRef} renderAs={"canvas"}/>
+                    <QRCodeCanvas value={qrData} level={"H"} canvasprops={{ qrRef }} alt="QR Code"  />
                     </div>
                 <p className="text-center">Voici votre billet électronique. <br/>Présentez ce code QR à l'entrée de l'événement.</p>
                 {/* <button className="bg-black text-white px-5 py-3 rounded-full hover:bg-opacity-70 transition duration-300" onClick={downloadQR}>Télécharger le code QR</button> */}

@@ -6,6 +6,9 @@ module.exports = {
       testMatch: ['<rootDir>/src/app/tests/frontend/**/*.js'],
       testEnvironment: 'jest-environment-jsdom',
       setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+      moduleNameMapper: {
+        "^@/(.*)$": "<rootDir>/src/$1"
+      },
       // autres configurations spécifiques au front-end
     },
     {

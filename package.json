@@ -17,6 +17,7 @@
     "@stripe/stripe-js": "^3.0.10",
     "@testing-library/jest-dom": "^6.4.2",
     "bcryptjs": "^2.4.3",
+    "canvas": "^2.11.2",
     "chart.js": "^4.4.2",
     "countries-list": "^3.1.0",
     "crypto-js": "^4.2.0",
