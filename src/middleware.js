@@ -8,9 +8,10 @@ export const middleware = async (req) => {
     const token = await getToken({ req, secret: process.env.SECRET })
     const { pathname } = req.nextUrl
 
-    if (pathname.startsWith("/dashboard") && (!token || !(token.role === "ADMIN" || token.role === "ORGANISATEUR"))) {
-        return NextResponse.redirect(new URL('/api/auth/signin', req.url))
-      }
+    // if (pathname.startsWith("/dashboard") && (!token || !(token.role === "ADMIN" || token.role === "ORGANISATEUR"))) {
+    //     // Redirect to login if the user is not authenticated
+    //     return NextResponse.redirect(`${process.env.NEXTAUTH_URL}/login`)
+    //   }
     
 
     return NextResponse.next()

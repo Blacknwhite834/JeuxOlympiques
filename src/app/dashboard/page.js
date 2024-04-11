@@ -35,11 +35,11 @@ export default function AdminOnlyPage() {
 
   
 
-  const labels = ventes.map(offre => offre.title);
-  const values = ventes.map(offre => offre.nombreVentes);
+  const labels = ventes && ventes.map(offre => offre.title);
+  const values = ventes && ventes.map(offre => offre.nombreVentes);
 
-  const labelsRecettes = ventes.map(offre => offre.title);
-  const valuesRecettes = ventes.map(offre => offre.nombreVentes * offre.prix);
+  const labelsRecettes = ventes && ventes.map(offre => offre.title);
+  const valuesRecettes = ventes && ventes.map(offre => offre.nombreVentes * offre.prix);
 
   return (
     <div className='h-screen flex flex-col xl:flex-row'>
@@ -53,7 +53,7 @@ export default function AdminOnlyPage() {
           {/* Composant de graphique pour afficher les ventes par offre */}
           <div className="mt-5 flex gap-5 flex-wrap justify-center sm:justify-start">
 
-          {ventes.map(offre => (
+          {ventes && ventes.map(offre => (
               <div key={offre.id} className="flex justify-center items-center flex-col w-fit gap-2">
                 <h3 className="text-xl font-bold">{offre.title}</h3>
                 <div className={`rounded-full border-[10px] h-32 w-32 flex flex-col justify-center items-center ${borderColorRandom()}`}>
@@ -66,7 +66,7 @@ export default function AdminOnlyPage() {
             <div className="flex justify-center items-center flex-col w-fit gap-2">
               <h3 className="text-xl font-bold">Total</h3>
               <div className="rounded-full border-[10px] border-black h-32 w-32 flex flex-col justify-center items-center">
-                <span className="text-lg">{ventes.reduce((total, offre) => total + offre.nombreVentes, 0)}</span> 
+                <span className="text-lg">{ventes && ventes.reduce((total, offre) => total + offre.nombreVentes, 0)}</span> 
                 <span>VENDU</span>
               </div>
             </div>
@@ -101,7 +101,7 @@ export default function AdminOnlyPage() {
           <h2 className="text-2xl font-bold text-center sm:text-left ">Recettes par offre</h2>
           <div className="mt-5 flex gap-5 flex-wrap justify-center sm:justify-start">
 
-          {ventes.map(offre => (
+          {ventes && ventes.map(offre => (
               <div key={offre.id} className="flex justify-center items-center flex-col w-fit gap-2">
                 <h3 className="text-xl font-bold">{offre.title}</h3>
                 <div className={`rounded-full border-[10px] h-32 w-32 flex flex-col justify-center items-center ${borderColorRandom()}`}>
@@ -114,7 +114,7 @@ export default function AdminOnlyPage() {
             <div className="flex justify-center items-center flex-col w-fit gap-2">
               <h3 className="text-xl font-bold">Total</h3>
               <div className="rounded-full border-[10px] border-black h-32 w-32 flex flex-col justify-center items-center">
-                <span className="text-lg">{ventes.reduce((total, offre) => total + offre.nombreVentes * offre.prix, 0)}</span>
+                <span className="text-lg">{ventes && ventes.reduce((total, offre) => total + offre.nombreVentes * offre.prix, 0)}</span>
                 <span>€</span>
               </div>
             </div>
@@ -144,7 +144,7 @@ export default function AdminOnlyPage() {
             <div className='flex flex-col gap-2'>
             <h2 className="text-xl font-bold text-center sm:text-left">Nombre d'offres</h2>
             <div className="flex flex-col items-center gap-2">
-            <span className="text-4xl font-bold">{ventes.length}</span>
+            <span className="text-4xl font-bold">{ventes && ventes.length}</span>
             <span>Offres disponibles</span>
             </div>
             </div>
@@ -154,7 +154,7 @@ export default function AdminOnlyPage() {
             <div className='flex flex-col gap-2'>
             <h2 className="text-xl font-bold text-center sm:text-left">Nombre de ventes</h2>
             <div className="flex flex-col items-center gap-2">
-            <span className="text-4xl font-bold">{ventes.reduce((total, offre) => total + offre.nombreVentes, 0)}</span>
+            <span className="text-4xl font-bold">{ventes && ventes.reduce((total, offre) => total + offre.nombreVentes, 0)}</span>
             <span>Ventes réalisées</span>
             </div>
             </div>

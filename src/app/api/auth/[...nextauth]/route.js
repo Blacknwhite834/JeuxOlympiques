@@ -62,7 +62,7 @@ const handler = NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
   jwt: {
     secret: process.env.NEXTAUTH_JWT_SECRET,
-  }
+  },
   // Add other NextAuth configurations here
 });
 
