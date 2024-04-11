@@ -64,6 +64,8 @@ export async function POST(req) {
         const venteId = vente.id;
         // console.log("Vente créée avec succès : ", venteId);
         // console.log("Paiement créé avec succès : ", paymentIntent);
+        // console.log("Vente créée avec succès : ", venteId);
+        // console.log("Paiement créé avec succès : ", vente);
 
 
         return new Response(JSON.stringify({ success: true, venteId: venteId }), {
