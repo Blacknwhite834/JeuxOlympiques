@@ -18,9 +18,7 @@ jest.mock('next/navigation', () => ({
   }));
   
 describe('SuccessPage Component', () => {
-    beforeEach(() => {
-
-        
+    beforeEach(() => {ç
         global.fetch = jest.fn(() =>
           Promise.resolve({
             json: () => Promise.resolve({ qrData: 'some-qr-data', offre: { title: 'Ticket', nombre: 1, prix: 100 } }),

@@ -1,4 +1,5 @@
 "use client"
+import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import QrScanner from 'qr-scanner';
 import { getSession, useSession } from 'next-auth/react';
