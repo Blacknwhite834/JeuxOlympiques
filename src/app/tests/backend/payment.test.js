@@ -31,7 +31,7 @@ describe('POST /api/checkout', () => {
     await prisma.user.create({
       data: {
         id: 'mocked_user_id',
-        email: 'test@mail.com',
+        email: 'testPayment@mail.com',
         name: 'John Doe',
         password: 'Password1@',
         accountKey: 'mocked_account_key',
@@ -54,7 +54,7 @@ describe('POST /api/checkout', () => {
     await prisma.vente.deleteMany({
       where: {
         user: {
-          email: 'test@mail.com',
+          email: 'testPayment@mail.com',
         },
       },
     });
@@ -67,7 +67,7 @@ describe('POST /api/checkout', () => {
     
     await prisma.user.delete({
       where: {
-        email: 'test@mail.com',
+        email: 'testPayment@mail.com',
       },
     });
   });

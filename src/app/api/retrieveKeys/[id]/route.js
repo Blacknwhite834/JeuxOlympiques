@@ -47,6 +47,7 @@ export async function GET(req, context) {
 
         const dataForQRCode = `${vente.venteKey}-${vente.user.accountKey}`;
 
+
         const encryptedDataForQRCode = CryptoJS.AES.encrypt(dataForQRCode, process.env.SECRET_KEY).toString();
 
         return new Response(JSON.stringify({qrData: encryptedDataForQRCode, offre: vente.offre}), {

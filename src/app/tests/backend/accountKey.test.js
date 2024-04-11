@@ -9,7 +9,7 @@ describe('POST /api/auth/register', () => {
     const { req, res } = createMocks({
       method: 'POST',
       body: {
-        email: 'test@mail.com',
+        email: 'testAccount@mail.com',
         password: 'Password1@',
         name: 'John Doe'
       },
@@ -27,7 +27,7 @@ describe('POST /api/auth/register', () => {
     // Vérification de la création de l'utilisateur
     const user = await prisma.user.findUnique({
       where: {
-        email: 'test@mail.com',
+        email: 'testAccount@mail.com',
       },
     });
 
@@ -37,7 +37,7 @@ describe('POST /api/auth/register', () => {
 
     await prisma.user.delete({
       where: {
-        email: 'test@mail.com',
+        email: 'testAccount@mail.com',
       },
     });
 
