@@ -22,7 +22,6 @@ export default function Login() {
       redirect: false, // Gérer manuellement la redirection
       email, 
       password,
-      callbackUrl,
     });
   
     if (result?.error) {
