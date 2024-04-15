@@ -6,7 +6,7 @@ import HamburgerDashboard from "./hamburger";
 
 export default function Sidenav() {
     return (
-        <div className="flex flex-row xl:flex-col x-full xl:w-1/6 h-fit xl:h-full bg-white border-b-2 xl:border-b-none border-r-none xl:border-r-2 border-black text-black items-center justify-between pb-0 xl:pb-10">
+        <div className="flex flex-row xl:flex-col x-full xl:w-1/6 h-full bg-white border-b-2 xl:border-b-none border-r-none xl:border-r-2 border-black text-black items-center justify-between pb-0 xl:pb-10">
 
             <div className="hidden xl:flex flex-col gap-5 px-5 py-5 justify-center w-full items-center">
                 <Link href="/dashboard"><img src="/logo.png" alt="logo" className="w-30 h-30"/></Link>

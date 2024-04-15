@@ -78,21 +78,21 @@ export default function Scanner() {
 
         
         return (
-            <div className="flex flex-col items-center justify-center h-screen space-y-5">
-        <div className="flex justify-center items-center flex-col bg-zinc-100 p-5 rounded-lg shadow-lg gap-5">
+            <div className="flex flex-col items-center justify-center h-[calc(100dvh)] space-y-5 overflow-hidden px-2">
+        <div className="flex justify-center items-center flex-col bg-zinc-100 p-5 rounded-lg shadow-lg gap-5 w-full sm:w-fit ">
             <Link href="/">
-    <img src="/logo.png" alt="Paris 2024" className="w-[100px] md:w-[140px] lg:w-[160px] h-[100px] md:h-[140px] lg:h-[160px]" />
-    </Link>
+            <img src="/logo.png" alt="Paris 2024" className="w-[100px] md:w-[140px] lg:w-[160px] h-[100px] md:h-[140px] lg:h-[160px]" />
+            </Link>
             {!qrResult ? (
                 <>
-                <h1 className="text-2xl font-bold">Scannez le QR Code</h1>
+                <h1 className="text-xl sm:text-2xl font-bold">Scannez le QR Code</h1>
                 <input type="file" accept="image/*" onChange={handleFileChange} />
                 <p>ou</p>
-                <button onClick={startScan} className='bg-blue-500 hover:bg-opacity-70 text-white font-bold py-2 px-4 rounded transition duration-300'>Démarrer le scan avec la caméra</button>
+                <button onClick={startScan} className='text-base bg-blue-500 hover:bg-opacity-70 text-white font-bold py-2 px-4 rounded transition duration-300'>Démarrer le scan avec la caméra</button>
                 {/* <button onClick={() => setScanning(false)}>Arrêter le scan</button> */}
                 </>
             ) : (
-                <button onClick={() => setQrResult('')} className='bg-blue-500 hover:bg-opacity-70 text-white font-bold py-2 px-4 rounded transition duration-300'>Nouveau scan</button>
+                <button onClick={() => setQrResult('')} className='text-base bg-blue-500 hover:bg-opacity-70 text-white font-bold py-2 px-4 rounded transition duration-300'>Nouveau scan</button>
             )
         }
 

@@ -38,9 +38,9 @@ export default function Hamburger({ bgColor, borderColor }) {
                 <a href="/billetterie" className="text-black text-4xl">Billetterie</a>
                 <a href="/panier" className="text-black text-4xl">Panier</a>
                 {session ? (
-                    <button onClick={() => signOut()} className="text-black text-4xl">Déconnexion</button>
+                    <button onClick={() => signOut()} className="text-white bg-black px-5 py-2 rounded-md hover:bg-opacity-70 transition duration-300">Déconnexion</button>
                 ) : (
-                    <Link href="/login" className="text-black text-4xl">Connexion</Link>
+                    <Link href="/login" className=" bg-black text-white px-5 py-2 rounded-md hover:bg-opacity-70 transition duration-300">Connexion</Link>
                 )
                 }
             </div>

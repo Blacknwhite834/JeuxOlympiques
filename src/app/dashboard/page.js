@@ -73,7 +73,7 @@ export default function AdminOnlyPage() {
 
             
 
-            <div className="w-full sm:w-fit flex justify-center">
+            <div className="hidden sm:flex pl-5 justify-center">
             <ChartComponent data={{ labels, values }}  type="pie" titre={"Nombre de vente par offre"}/>
             </div>
             </div>
@@ -119,7 +119,7 @@ export default function AdminOnlyPage() {
               </div>
             </div>
 
-            <div className="w-full sm:w-fit pl-5 flex justify-center">
+            <div className="hidden sm:flex pl-5 justify-center">
             <ChartComponent data={{ labels: labelsRecettes, values: valuesRecettes }}
             type="bar" titre={"Recettes par offre"}/>
             </div>

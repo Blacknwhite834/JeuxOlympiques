@@ -24,7 +24,8 @@ export default function ChartComponent({ data, type, titre}) {
         }]
       },
       options: {
-        // Options du graphique ici
+        maintainAspectRatio: false, // Permet au graphique de s'adapter à la taille du conteneur
+        responsive: true, // Rend le graphique responsive
       }
     });
 
