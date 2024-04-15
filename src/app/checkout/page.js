@@ -30,7 +30,7 @@ export default function Checkout() {
 
 
     useEffect(() => {
-        if (!session) {
+        if (!session && status === "authenticated") {
             localStorage.setItem('redirectAfterLogin', window.location.pathname);
             // Rediriger l'utilisateur vers la page de connexion s'il n'est pas authentifié
             signIn();
