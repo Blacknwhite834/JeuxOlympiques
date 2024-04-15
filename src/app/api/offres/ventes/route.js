@@ -6,6 +6,7 @@ const prisma = new PrismaClient();
 export async function GET(req) {
     const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
+
     if (!session || session.role !== "ADMIN" && session.role !== "ORGANISATEUR") {
         return new Response(JSON.stringify({ error: "Non autorisé" }), {
             status: 401,
