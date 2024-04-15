@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useCart } from "@/app/CartContext";
 import { CardElement, useStripe, useElements, AddressElement } from "@stripe/react-stripe-js";
 import Header from "../components/header";
-import { signIn, useSession } from "next-auth/react";
+import { getSession, signIn, useSession } from "next-auth/react";
 import { getToken } from "next-auth/jwt";
 import { useRouter } from "next/navigation";
 import { countries } from "countries-list";
@@ -30,7 +30,7 @@ export default function Checkout() {
 
 
     useEffect(() => {
-        if (!session && status === "authenticated") {
+        if (!session && status === "unauthenticated") {
             localStorage.setItem('redirectAfterLogin', window.location.pathname);
             // Rediriger l'utilisateur vers la page de connexion s'il n'est pas authentifié
             signIn();
