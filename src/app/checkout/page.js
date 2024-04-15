@@ -33,7 +33,7 @@ export default function Checkout() {
         if (!session && status === "unauthenticated") {
             localStorage.setItem('redirectAfterLogin', window.location.pathname);
             // Rediriger l'utilisateur vers la page de connexion s'il n'est pas authentifié
-            signIn();
+            router.push('/login');
         } 
     
     }, [session, status]);
