@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import Hamburger from "./hamburger";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useCart } from "../CartContext";
+import { useRouter } from 'next/navigation';
 
 export default function Header({ color, bgColor, borderColor}) {
     const [decompte, setDecompte] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -14,6 +15,7 @@ export default function Header({ color, bgColor, borderColor}) {
     const menuRef = useRef(); // Référence pour le bouton/menu
     const { cartItems, clearCart } = useCart();
 
+    const router = useRouter();
     const items = cartItems.length;
 
 
@@ -49,6 +51,10 @@ export default function Header({ color, bgColor, borderColor}) {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [menuRef]);
+
+    const redirectToLogin = () => {
+        router.push('/login');
+    }
 
 
     return (
@@ -119,7 +125,7 @@ export default function Header({ color, bgColor, borderColor}) {
                                     <div className="px-4 py-2 hover:opacity-70 cursor-pointer w-full text-center" onClick={() => signOut()}>Déconnexion</div>
                                 </>
                             ) : (
-                                <div className="px-4 py-2 hover:opacity-70 cursor-pointer w-full text-center" onClick={() => signIn()}>Connexion</div>
+                                <div className="px-4 py-2 hover:opacity-70 cursor-pointer w-full text-center" onClick={redirectToLogin}>Connexion</div>
                             )}
                         </div>
                     )}
