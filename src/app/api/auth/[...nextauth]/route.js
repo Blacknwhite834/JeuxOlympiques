@@ -29,8 +29,6 @@ const handler = NextAuth({
           };
         }
         
-        // Return null if user data could not be retrieved
-        
         return null;
       },
     }),
@@ -43,16 +41,12 @@ const handler = NextAuth({
   },
   callbacks: {
     async session({ session, token }) {
-      // Ici, vous ajoutez `role` à `session.user` en utilisant la propriété du `token`
-      // qui a été ajoutée dans le callback `jwt` (si vous utilisez les JWT)
-      if (token.role) { // Assurez-vous que token.role est défini
+      if (token.role) {
         session.user.role = token.role;
       }
       return session;
     },
     async jwt({ token, user }) {
-      // Si l'utilisateur est défini, cela signifie que l'autorisation a réussi
-      // Ajoutez le rôle de l'utilisateur au token pour qu'il puisse être utilisé dans le callback de la session
       if (user) {
         token.role = user.role;
       }

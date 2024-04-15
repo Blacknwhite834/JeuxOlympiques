@@ -30,14 +30,15 @@ export default function Login() {
     } else {
       // Redirection vers la page souhaitée
       const session = await getSession();
-      if (session.user.role === 'ADMIN' || session.user.role === 'ORGANISATEUR') {
-        router.push('/dashboard');
-      } else if (session.user.role === 'EMPLOYE') {
-        router.push('/scanner');
-      } else {
-        router.push(callbackUrl);
+      // if (session.user.role === 'ADMIN' || session.user.role === 'ORGANISATEUR') {
+      //   router.push('/dashboard');
+      // } else if (session.user.role === 'EMPLOYE') {
+      //   router.push('/scanner');
+      // } else {
+      //   router.push(callbackUrl);
         
-      } 
+      // } 
+      setMessage('COnnexion réussie');
 
     }
   };
