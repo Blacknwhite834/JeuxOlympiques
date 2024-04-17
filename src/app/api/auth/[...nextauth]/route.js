@@ -34,6 +34,7 @@ const handler = NextAuth({
     }),
   ],
   pages: {
+    signIn: '/login',
     signOut: '/',
     error: '/login',
     newUser: '/register',
@@ -53,7 +54,6 @@ const handler = NextAuth({
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
-  // Add other NextAuth configurations here
 });
 
 export {handler as GET, handler as POST};
