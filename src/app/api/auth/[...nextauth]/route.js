@@ -54,6 +54,7 @@ const handler = NextAuth({
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
+  // Add other NextAuth configurations here
 });
 
 export {handler as GET, handler as POST};

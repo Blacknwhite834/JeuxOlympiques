@@ -45,8 +45,9 @@ export default function Login() {
     <div className="flex flex-col min-h-screen">
       <Header bgColor="bg-black" color={{ color: "black" }} borderColor="border-black"/>
       <h1 className="text-4xl sm:text-6xl xl:text-8xl text-black font-bold text-center px-5">Veuillez vous connecter</h1>
-      <main className="flex-1 flex justify-center items-center">
-      <form onSubmit={handleSubmit} className='flex flex-col justify-center items-center sm:items-start gap-5 w-full sm:w-fit px-5 sm:px-0 mt-5 sm:mt-10'>
+      <main className="flex-1 flex justify-center items-center px-5 sm:px-10">
+      <form onSubmit={handleSubmit} className='flex flex-col justify-center items-center sm:items-start gap-5 w-full sm:w-fit px-5 sm:px-10 mt-5 sm:mt-10 bg-zinc-100 p-5 sm:p-10 rounded-3xl shadow-md'>
+      <h2 className='text-2xl sm:text-3xl font-bold text-black text-center'>Connexion</h2>
       {message && <p className=' text-red-500 font-bold text-base'>{message}</p>}
         <input type="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} required className='py-2 w-full sm:w-fit px-5 pr-0 sm:pr-56 border-2 border-black rounded-full placeholder:text-black text-base sm:text-xl'/>
         <input type="password" placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} required className='py-2 w-full sm:w-fit px-5 pr-0 sm:pr-56 border-2 border-black rounded-full placeholder:text-black text-base sm:text-xl' />
