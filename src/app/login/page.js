@@ -55,7 +55,7 @@ export default function Login() {
       delay: 0.5,
       stagger: 0.1
     })
-  })
+  }, [])
 
   return (
     <div className="flex flex-col min-h-screen">

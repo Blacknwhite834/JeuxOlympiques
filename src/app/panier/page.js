@@ -27,7 +27,7 @@ export default function Panier() {
             delay: 0.5,
             stagger: 0.2
         })
-    })
+    }, [])
 
     return (
         <div className="flex flex-col min-h-screen ">
@@ -58,7 +58,7 @@ export default function Panier() {
             <button onClick={() => clearCart()} className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-opacity-70 transition duration-300 mt-5">Vider le panier</button>
             </div>
 
-            <div className="bg-zinc-100 rounded-lg p-5 sm:p-10 flex flex-col gap-3 w-full sm:w-fit title opacity-0">
+            <div className="bg-zinc-100 rounded-lg p-5 sm:p-10 flex flex-col gap-3 w-full sm:w-fit gsap opacity-0">
             <h2 className="text-2xl font-bold">Récapitulatif de votre commande</h2>
             <div className="h-0.5 bg-black my-5"></div>
             <div className="flex justify-between">

@@ -42,7 +42,7 @@ export default function Card({ title, description, image, textColor, inverse = f
 
   }, []);
     
-  const containerClasses = `w-full h-fit flex items-center  ${inverse ? "flex-col 2xl:flex-row-reverse image-right" : "flex-col 2xl:flex-row image-left"}`;
+  const containerClasses = `w-full h-fit flex items-center  ${inverse ? "flex-col 2xl:flex-row-reverse image-right opacity-0" : "flex-col 2xl:flex-row image-left opacity-0"}`;
 
   return (
     <div className={containerClasses}>

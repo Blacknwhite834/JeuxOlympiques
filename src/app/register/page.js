@@ -1,11 +1,12 @@
 "use client";
 // pages/register.js
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import gsap from 'gsap';
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -64,16 +65,27 @@ export default function Register() {
     }
   }
 
+  useEffect(() => {
+    gsap.to(".gsap", {
+      x: 0,
+      scale: 1,
+      opacity: 1,
+      duration: 0.5,
+      delay: 0.5,
+      stagger: 0.1
+    })
+  }, [])
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header bgColor="bg-black" color={{ color: "black" }} borderColor="border-black"/>
-      <h1 className="text-4xl sm:text-6xl xl:text-8xl text-black font-bold text-center px-5">Veuillez vous inscrire</h1>
+      <h1 className="text-4xl sm:text-6xl xl:text-8xl text-black font-bold text-center px-5 gsap opacity-0">Veuillez vous inscrire</h1>
       <main className="flex-1 flex justify-center items-center flex-col">
-        <p className='text-black text-sm  sm:text-base font-normal px-5 text-center py-3'>Le mot de passe doit contenir au moins une majuscule, un chiffre, un caractère spécial et faire au moins 8 caractères de longueur.</p>
+        <p className='text-black text-sm  sm:text-base font-normal px-5 text-center py-3 gsap opacity-0'>Le mot de passe doit contenir au moins une majuscule, un chiffre, un caractère spécial et faire au moins 8 caractères de longueur.</p>
         {message && <p className=' text-red-500 font-bold text-base'>{message}</p>}
       <form onSubmit={handleSubmit} className='flex flex-col justify-center items-center sm:items-start gap-5 w-full sm:w-fit px-5 sm:px-0 mt-5'>
-        <input type="text" placeholder="Nom" value={name} onChange={(e) => setName(e.target.value)} required className='py-2 w-full sm:w-fit px-5 pr-0 sm:pr-56 border-2 border-black rounded-full placeholder:text-black text-base sm:text-xl'/>
-        <input type="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} required className='py-2 w-full sm:w-fit px-5 pr-0 sm:pr-56 border-2 border-black rounded-full placeholder:text-black text-base sm:text-xl' autoComplete="email"/>
+        <input type="text" placeholder="Nom" value={name} onChange={(e) => setName(e.target.value)} required className='py-2 w-full sm:w-fit px-5 pr-0 sm:pr-56 border-2 border-black rounded-full placeholder:text-black text-base sm:text-xl gsap opacity-0'/>
+        <input type="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} required className='py-2 w-full sm:w-fit px-5 pr-0 sm:pr-56 border-2 border-black rounded-full placeholder:text-black text-base sm:text-xl gsap opacity-0' autoComplete="email"/>
         <div className="relative w-full sm:w-fit">
   <input
     type="password"
@@ -84,13 +96,13 @@ export default function Register() {
       setIsPasswordValid(checkPasswordStrength(e.target.value));
     }}
     required
-    className="py-2 w-full sm:w-fit px-5 pr-0 sm:pr-56 border-2 border-black rounded-full placeholder:text-black text-base sm:text-xl"
+    className="py-2 w-full sm:w-fit px-5 pr-0 sm:pr-56 border-2 border-black rounded-full placeholder:text-black text-base sm:text-xl gsap opacity-0"
     autoComplete="current-password"
   />
   {isPasswordValid ? (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6 absolute top-1/2 transform -translate-y-1/2 right-3 text-green-500"
+      className="h-6 w-6 absolute top-1/2 transform -translate-y-1/2 right-3 text-green-500 "
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -105,7 +117,7 @@ export default function Register() {
   ) : (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6 absolute top-1/2 transform -translate-y-1/2 right-3 text-red-500"
+      className="h-6 w-6 absolute top-1/2 transform -translate-y-1/2 right-3 text-red-500 gsap opacity-0"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -128,7 +140,7 @@ export default function Register() {
       setIsPasswordMatch(password === e.target.value);
     }}
     required
-    className="py-2 w-full sm:w-fit px-5 pr-0 sm:pr-56 border-2 border-black rounded-full placeholder:text-black text-base sm:text-xl"
+    className="py-2 w-full sm:w-fit px-5 pr-0 sm:pr-56 border-2 border-black rounded-full placeholder:text-black text-base sm:text-xl gsap opacity-0"
     autoComplete="current-password"
   />
   {isPasswordMatch ? (
@@ -149,7 +161,7 @@ export default function Register() {
   ) : (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6 absolute top-1/2 transform -translate-y-1/2 right-3 text-red-500"
+      className="h-6 w-6 absolute top-1/2 transform -translate-y-1/2 right-3 text-red-500 gsap opacity-0"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -164,8 +176,8 @@ export default function Register() {
   )}
   </div>
         <div className='flex flex-col sm:flex-row justify-between items-center gap-3 w-full'>
-        <button type="submit" className='bg-black text-white px-10 py-2 rounded-md w-full hover:bg-opacity-70 transition duration-300'>S'inscrire</button>
-        <Link href="/login" className='text-black p-2 rounded-md text-nowrap hover:underline'>Retourner en arrière</Link>
+        <button type="submit" className='bg-black text-white px-10 py-2 rounded-md w-full hover:bg-opacity-70 transition duration-300 gsap opacity-0'>S'inscrire</button>
+        <Link href="/login" className='text-black p-2 rounded-md text-nowrap hover:underline gsap opacity-0 -translate-x-5'>Retourner en arrière</Link>
         </div>
       </form>
       </main>
