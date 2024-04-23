@@ -56,6 +56,11 @@ export default function Header({ color, bgColor, borderColor}) {
         router.push('/login');
     }
 
+    const redirectToLogout = () => {
+        signOut();
+        clearCart();
+    }
+
 
     return (
         <div className=" w-full py-3 px-5 sm:px-10 md:px-16 lg:px-24 flex justify-between lg:grid grid-cols-3 items-center" style={color}>
@@ -122,7 +127,7 @@ export default function Header({ color, bgColor, borderColor}) {
                                     <div className="h-0.5 bg-black w-full"></div>
                                     <div className="px-4 pt-2 pb-1">{session.user.name}</div>
                                     <div className="px-4 pb-2 pt-1">{session.user.email}</div>
-                                    <div className="px-4 py-2 hover:opacity-70 cursor-pointer w-full text-center" onClick={() => signOut()}>Déconnexion</div>
+                                    <div className="px-4 py-2 hover:opacity-70 cursor-pointer w-full text-center" onClick={redirectToLogout}>Déconnexion</div>
                                 </>
                             ) : (
                                 <div className="px-4 py-2 hover:opacity-70 cursor-pointer w-full text-center" onClick={redirectToLogin}>Connexion</div>

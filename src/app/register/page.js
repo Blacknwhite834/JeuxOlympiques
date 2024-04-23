@@ -73,7 +73,7 @@ export default function Register() {
         {message && <p className=' text-red-500 font-bold text-base'>{message}</p>}
       <form onSubmit={handleSubmit} className='flex flex-col justify-center items-center sm:items-start gap-5 w-full sm:w-fit px-5 sm:px-0 mt-5'>
         <input type="text" placeholder="Nom" value={name} onChange={(e) => setName(e.target.value)} required className='py-2 w-full sm:w-fit px-5 pr-0 sm:pr-56 border-2 border-black rounded-full placeholder:text-black text-base sm:text-xl'/>
-        <input type="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} required className='py-2 w-full sm:w-fit px-5 pr-0 sm:pr-56 border-2 border-black rounded-full placeholder:text-black text-base sm:text-xl'/>
+        <input type="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} required className='py-2 w-full sm:w-fit px-5 pr-0 sm:pr-56 border-2 border-black rounded-full placeholder:text-black text-base sm:text-xl' autoComplete="email"/>
         <div className="relative w-full sm:w-fit">
   <input
     type="password"
@@ -85,6 +85,7 @@ export default function Register() {
     }}
     required
     className="py-2 w-full sm:w-fit px-5 pr-0 sm:pr-56 border-2 border-black rounded-full placeholder:text-black text-base sm:text-xl"
+    autoComplete="current-password"
   />
   {isPasswordValid ? (
     <svg
@@ -128,6 +129,7 @@ export default function Register() {
     }}
     required
     className="py-2 w-full sm:w-fit px-5 pr-0 sm:pr-56 border-2 border-black rounded-full placeholder:text-black text-base sm:text-xl"
+    autoComplete="current-password"
   />
   {isPasswordMatch ? (
     <svg

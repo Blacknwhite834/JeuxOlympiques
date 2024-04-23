@@ -3,10 +3,12 @@ import React from 'react';
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
+import { useCart } from '../CartContext';
 
 export default function Hamburger({ bgColor, borderColor }) {
     const [isOpen, setIsOpen] = useState(false);
     const { data: session } = useSession();
+    const { cartItems, clearCart } = useCart();
 
     const handleClick = () => {
         if (isOpen) {
@@ -19,6 +21,13 @@ export default function Hamburger({ bgColor, borderColor }) {
             setIsOpen(true);
         }
     };
+
+    const redirectToLogout = () => {
+        signOut();
+        clearCart();
+    };
+
+    
   return (
     <div>
 
@@ -38,7 +47,7 @@ export default function Hamburger({ bgColor, borderColor }) {
                 <a href="/billetterie" className="text-black text-4xl">Billetterie</a>
                 <a href="/panier" className="text-black text-4xl">Panier</a>
                 {session ? (
-                    <button onClick={() => signOut()} className="text-white bg-black px-5 py-2 rounded-md hover:bg-opacity-70 transition duration-300">Déconnexion</button>
+                    <button onClick={redirectToLogout} className="text-white bg-black px-5 py-2 rounded-md hover:bg-opacity-70 transition duration-300">Déconnexion</button>
                 ) : (
                     <Link href="/login" className=" bg-black text-white px-5 py-2 rounded-md hover:bg-opacity-70 transition duration-300">Connexion</Link>
                 )
