@@ -1,18 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Header from "../header";
 import Link from "next/link";
+import gsap from "gsap";
 
 export default function Homepage() {
+
+    useEffect(() => {
+
+        gsap.fromTo(".title", {
+            y: 20,
+            opacity: 0,
+        }, {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.2,
+            scale: 1,
+            delay: 0.5,
+        });
+        
+    }, []);
+
     return (
         <div className="w-full h-[calc(100dvh)] bg-[url('/background.webp')] bg-cover bg-center flex flex-col rounded-[30px] sm:rounded-[50px] border-[10px] sm:border-[15px] border-white">
             <Header color={{ color: "white" }} bgColor="bg-white" borderColor="border-white"/>
             
             <div className="flex-grow flex flex-col justify-center items-center w-full px-5">
 
-            <Image src="/logoOlympique.png" alt="Paris 2024" width={100} height={100} />
-            <h1 className="text-center text-white text-4xl sm:text-6xl xl:text-8xl font-bold w-full md:w-3/4">Vivez l'esprit Olympique au cœur de la France !</h1>
-            <Link href="#presentation" className="bg-white text-black px-5 py-2 rounded-full mt-5 flex items-center gap-3 text-xl hover:bg-opacity-70 transition duration-300">
+            <Image src="/logoOlympique.png" alt="Paris 2024" width={100} height={100} className="title opacity-0 "/>
+            <h1 className="title opacity-0  text-center text-white text-4xl sm:text-6xl xl:text-8xl font-bold w-full md:w-3/4">Vivez l'esprit Olympique au cœur de la France !</h1>
+            <Link href="#presentation" className="title opacity-0 bg-white text-black px-5 py-2 rounded-full mt-5 flex items-center gap-3 text-xl hover:bg-opacity-70">
             Découvrir 
             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="30" viewBox="0 0 35 35" fill="none">
             <path d="M31.1012 17.5C31.1012 17.1337 30.955 16.7969 30.6619 16.5188L20.9644 6.83625C20.6419 6.51375 20.32 6.39625 19.9681 6.39625C19.2506 6.39625 18.6937 6.92375 18.6937 7.65625C18.6937 8.00813 18.8112 8.34438 19.0456 8.57938L22.3269 11.9188L27.2631 16.4163L23.7181 16.1963H5.18812C4.44125 16.1963 3.89875 16.7381 3.89875 17.5C3.89875 18.2619 4.44062 18.8038 5.18812 18.8038H23.7181L27.2781 18.5838L22.3269 23.0813L19.0456 26.4206C18.8112 26.6406 18.6937 26.9919 18.6937 27.3438C18.6937 28.0763 19.25 28.6037 19.9687 28.6037C20.32 28.6037 20.6275 28.4719 20.9206 28.1931L30.6619 18.4812C30.955 18.2031 31.1012 17.8663 31.1012 17.5Z" fill="black"/>

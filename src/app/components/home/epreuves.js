@@ -5,7 +5,7 @@ import Card from "../card";
 export default function Epreuves() {
     return (
         <div className="h-fit w-full mt-16">
-            <h1 className="text-center text-black text-4xl sm:text-6xl xl:text-8xl font-bold">Les épreuves</h1>
+            <h1 className="text-center text-black text-4xl sm:text-6xl xl:text-8xl font-bold text-gsap">Les épreuves</h1>
 
             <div className="mt-5 sm:mt-24 flex flex-col gap-16">
             <Card title="100 mètres masculin" description="Le 100 mètres est l'épreuve reine de l'athlétisme, symbolisant la quête de l'homme le plus rapide du monde. Dans une explosion de puissance et de vitesse, les athlètes s'affrontent sur la distance la plus courte et la plus électrisante des Jeux, captivant le public mondial par leur performance fulgurante." image="/image1.jpg" textColor={{ color: "sky" }} />
@@ -14,8 +14,8 @@ export default function Epreuves() {
             </div>
 
             <div className="flex flex-col justify-center items-center w-full gap-5 px-5 mt-16">
-            <h1 className="text-4xl sm:text-6xl xl:text-8xl text-black font-bold text-center">Et bien plus encore !</h1>
-            <Image src="/logoOlympique.png" alt="Paris 2024" width={100} height={100} />
+            <h1 className="text-4xl sm:text-6xl xl:text-8xl text-black font-bold text-center text-gsap">Et bien plus encore !</h1>
+            <Image src="/logoOlympique.png" alt="Paris 2024" width={100} height={100} className="text-gsap"/>
             </div>
         </div>
     );

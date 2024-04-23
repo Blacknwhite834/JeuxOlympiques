@@ -17,12 +17,17 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: white;
+  overflow-x: hidden;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.text-gsap {
+  @apply opacity-0 translate-y-[20px] ;
 }
 
 .active:after {

@@ -7,6 +7,7 @@ import Hamburger from "./hamburger";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useCart } from "../CartContext";
 import { useRouter } from 'next/navigation';
+import gsap from 'gsap';
 
 export default function Header({ color, bgColor, borderColor}) {
     const [decompte, setDecompte] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -17,6 +18,33 @@ export default function Header({ color, bgColor, borderColor}) {
 
     const router = useRouter();
     const items = cartItems.length;
+
+    useEffect(() => {
+        gsap.to(".logo", {
+            y: 0,
+            scale: 1,
+            opacity: 1,
+            duration: 0.5,
+        })
+
+        gsap.to(".menu", {
+            y: 0,
+            x: 0,
+            scale: 1,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.1,
+        })
+
+        gsap.to(".menu-links", {
+            y: 0,
+            x: 0,
+            scale: 1,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.2,
+        })
+    })
 
 
     useEffect(() => {
@@ -65,28 +93,28 @@ export default function Header({ color, bgColor, borderColor}) {
     return (
         <div className=" w-full py-3 px-5 sm:px-10 md:px-16 lg:px-24 flex justify-between lg:grid grid-cols-3 items-center" style={color}>
             <div className="hidden lg:flex justify-start gap-3">
-                <span className="text-base xl:text-xl text-right">Ouverture des JO <br/>dans :</span>
+                <span className="text-base xl:text-xl text-right menu opacity-0 -translate-x-10">Ouverture des JO <br/>dans :</span>
                 <div className="flex flex-row gap-2">
                     <div className="flex flex-col items-center gap-0">
-                        <span className="text-base xl:text-2xl">{decompte.days}</span>
-                        <span className="text-base">JOURS</span>
+                        <span className="text-base xl:text-2xl menu opacity-0">{decompte.days}</span>
+                        <span className="text-base menu opacity-0">JOURS</span>
                     </div>
                     <div className="flex flex-col items-center gap-0">
-                        <span className="text-base xl:text-2xl">{decompte.hours}</span>
-                        <span className="text-base">HEURES</span>
+                        <span className="text-base xl:text-2xl menu opacity-0">{decompte.hours}</span>
+                        <span className="text-base menu opacity-0">HEURES</span>
                     </div>
                     <div className="flex flex-col items-center gap-0">
-                        <span className="text-base xl:text-2xl">{decompte.minutes}</span>
-                        <span className="text-base">MINS</span>
+                        <span className="text-base xl:text-2xl menu opacity-0">{decompte.minutes}</span>
+                        <span className="text-base menu opacity-0">MINS</span>
                     </div>
                     <div className="flex flex-col items-center gap-0">
-                        <span className="text-base xl:text-2xl">{decompte.seconds}</span>
-                        <span className="text-base">SECS</span>
+                        <span className="text-base xl:text-2xl menu opacity-0">{decompte.seconds}</span>
+                        <span className="text-base menu opacity-0">SECS</span>
                     </div>
                 </div>
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-center logo opacity-0 scale-95">
                 <Link href="/">
                 <img src="/logo.png" alt="Paris 2024" className="w-[100px] md:w-[140px] lg:w-[160px] h-[100px] md:h-[140px] lg:h-[160px] hover:scale-105 transition duration-300" />
                 </Link>
@@ -97,14 +125,14 @@ export default function Header({ color, bgColor, borderColor}) {
             </div>
 
             <div className="hidden sm:flex justify-end items-center gap-5 text-xl xl:text-2xl">
-                <Link href="/" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#D7C378] after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Accueil
+                <Link href="/" className="menu-links opacity-0 relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#D7C378] after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Accueil
                 </Link>
-                <Link href="/billetterie" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#D7C378] after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Billetterie
+                <Link href="/billetterie" className="menu-links opacity-0 relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#D7C378] after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Billetterie
                 </Link>
-                <Link href="/panier" className="relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#D7C378] after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Panier {items > 0 && <span className="text-xl">+{items}</span>}
+                <Link href="/panier" className="menu-links opacity-0 relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-[#D7C378] after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left">Panier {items > 0 && <span className="text-xl">+{items}</span>}
                 </Link>
 
-                <div className="flex justify-end items-center gap-5 text-xl xl:text-2xl relative h-fit" ref={menuRef}>
+                <div className="flex justify-end items-center gap-5 text-xl xl:text-2xl relative h-fit menu-links opacity-0 -translate-x-3" ref={menuRef}>
                 <button onClick={handleMenu} className="stroke-[#D7C378]" name="profile" aria-label="profile">
                 <svg xmlns="http://www.w3.org/2000/svg" width="41" height="41" viewBox="0 0 41 41" fill="none">
                 <g clipPath="url(#clip0_51_2)">
