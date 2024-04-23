@@ -8,6 +8,7 @@ import { getSession, signIn, useSession } from "next-auth/react";
 import { getToken } from "next-auth/jwt";
 import { useRouter } from "next/navigation";
 import { countries } from "countries-list";
+import gsap from 'gsap';
 import Footer from "../components/footer";
 
 
