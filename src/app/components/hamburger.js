@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
@@ -10,6 +10,7 @@ export default function Hamburger({ bgColor, borderColor }) {
     const [isOpen, setIsOpen] = useState(false);
     const { data: session } = useSession();
     const { cartItems, clearCart } = useCart();
+    const menuRef = useRef(null);
 
     const handleClick = () => {
         if (isOpen) {
@@ -38,20 +39,50 @@ export default function Hamburger({ bgColor, borderColor }) {
         })
     })
 
+    useEffect(() => {
+        if (isOpen) {
+            gsap.to(menuRef.current, {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: "power4.inOut",
+            });
+        } else {
+            gsap.to(menuRef.current, {
+                y: "-100%",
+                opacity: 1,
+                duration: 1,
+                ease: "power4.inOut",
+            });
+        }
+    }, [isOpen]);
+
     
   return (
     <div> 
 
-        <div className={`border rounded-full menu opacity-0 p-4 ${isOpen ? "border-black" : borderColor} z-50`} onClick={handleClick}>
-            <div className="w-5 h-5 flex flex-col justify-between items-center cursor-pointer">
-            <div className={`w-7 h-0.5 ${isOpen ? "bg-black rotate-45 translate-y-2" : bgColor} z-50`}></div>
-            <div className={`w-6 h-0.5 ${isOpen ? "hidden" : bgColor} z-50`}></div>
-            <div className={`w-7 h-0.5 ${isOpen ? "bg-black -rotate-45 -translate-y-2" : bgColor} z-50`}></div>
+        <div className={`border rounded-full menu opacity-0 p-4 ${borderColor} z-50`} onClick={handleClick}>
+            <div className="w-5 h-5 flex flex-col justify-between items-center cursor-pointer z-50">
+            <div className={`w-7 h-0.5 ${bgColor} z-50`}></div>
+            <div className={`w-7 h-0.5 ${bgColor} z-50`}></div>
+            <div className={`w-7 h-0.5 ${bgColor} z-50`}></div>
             </div>
         </div>
 
 
-        <div className="absolute bg-white w-full h-screen z-40 top-0 left-0 hidden" id="menu">
+        <div ref={menuRef} className="absolute bg-white w-full h-screen z-40 top-0 left-0 hidden" id="menu">
+
+            <div className='right-0 absolute mt-10 mr-5' onClick={handleClick}>
+            <div className="border border-black rounded-full menu opacity-0 p-4 z-50">
+            <div className="w-5 h-5 flex flex-col justify-between items-center cursor-pointer z-50">
+            <div className="w-7 h-0.5 z-50 bg-black rotate-45 translate-y-2"></div>
+            <div className="hidden"></div>
+            <div className="w-7 h-0.5 bg-black -rotate-45 -translate-y-2 z-50"></div>
+            </div>
+            </div>
+
+            </div>
+
             <div className="flex flex-col justify-center items-center w-full h-full gap-3">
                 <Link href="/"><img src="/logo.png" alt="Paris 2024" className="w-[100px] h-[100px]" /></Link>
                 <a href="/" className="text-black text-4xl border-t-2 border-black pt-2">Accueil</a>

@@ -19,11 +19,28 @@ export default function Homepage() {
             scale: 1,
             delay: 0.5,
         });
+
+        gsap.to(".bg-image", {
+            duration: 0.5,
+            borderRadius: "50px",
+            opacity: 1,
+            border: "15px solid white",
+        });
+
+        gsap.to(".arrow", {
+            y: 0,
+            x: 0,
+            opacity: 1,
+            duration: 0.3,
+            delay: 0.5,
+            stagger: 0.2,
+            ease: "power1.inOut",
+        })
         
     }, []);
 
     return (
-        <div className="w-full h-[calc(100dvh)] bg-[url('/background.webp')] bg-cover bg-center flex flex-col rounded-[30px] sm:rounded-[50px] border-[10px] sm:border-[15px] border-white">
+        <div className="w-full h-[calc(100dvh)] bg-[url('/background.webp')] bg-cover bg-center flex flex-col bg-image">
             <Header color={{ color: "white" }} bgColor="bg-white" borderColor="border-white"/>
             
             <div className="flex-grow flex flex-col justify-center items-center w-full px-5">
@@ -38,8 +55,8 @@ export default function Homepage() {
             </Link>
             </div>
 
-            <div className="absolute right-0 bottom-0 px-2 py-2 sm:py-4 bg-transparent sm:bg-white rounded-tl-3xl">
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none" className="p-2 animate-bounce fill-white sm:fill-black">
+            <div className="absolute right-0 bottom-0 px-2 py-2 sm:py-4 bg-transparent sm:bg-white rounded-tl-3xl arrow opacity-0 translate-x-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none" className="p-2 animate-bounce fill-white sm:fill-black arrow opacity-0">
             <path d="M25 46.3446C36.6563 46.3446 46.3446 36.6768 46.3446 25C46.3446 13.3437 36.6348 3.65536 24.9786 3.65536C13.3027 3.65536 3.65625 13.3437 3.65625 25C3.65625 36.6768 13.3232 46.3446 25 46.3446ZM25.0009 42.7875C15.1223 42.7875 7.23214 34.8768 7.23214 25C7.23214 15.1429 15.1009 7.2125 24.9786 7.2125C34.8348 7.2125 42.7652 15.1438 42.7866 25C42.8071 34.8777 34.8554 42.7875 24.9991 42.7875M24.9991 35.8188C25.4589 35.8188 25.8152 35.6098 26.2339 35.2116L33.3071 28.1393C33.6 27.867 33.7464 27.4902 33.7464 27.05C33.7464 26.1929 33.0768 25.5437 32.2187 25.5437C31.758 25.5437 31.3812 25.7116 31.1098 26.0045L28.5143 28.6205L26.4009 31.1741L26.5688 26.7366V15.8134C26.5688 14.9134 25.8991 14.2438 24.9991 14.2438C24.0786 14.2438 23.4295 14.9134 23.4295 15.8134V26.7366L23.5973 31.1313L21.483 28.6205L18.8884 26.0045C18.5937 25.7111 18.1953 25.5456 17.7795 25.5437C16.9214 25.5437 16.2732 26.1929 16.2732 27.0509C16.2732 27.4902 16.3982 27.867 16.6705 28.1393L23.7848 35.2125C24.2045 35.6304 24.5384 35.8188 24.9991 35.8188Z"/>
             </svg>
             </div>
