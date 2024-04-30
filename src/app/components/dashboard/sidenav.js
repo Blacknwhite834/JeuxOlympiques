@@ -3,8 +3,15 @@ import React from "react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import HamburgerDashboard from "./hamburger";
+import { useCart } from "@/app/CartContext";
 
 export default function Sidenav() {
+    const { clearCart } = useCart();
+
+    const handleSignOut = () => {
+        clearCart();
+        signOut();
+    }
     return (
         <div className="flex flex-row xl:flex-col x-full xl:w-1/6 h-fit xl:h-full bg-white border-b-2 xl:border-b-none border-r-none xl:border-r-2 border-black text-black items-center justify-between pb-0 xl:pb-10">
 
@@ -19,7 +26,7 @@ export default function Sidenav() {
             <HamburgerDashboard />
             </div>
 
-            <button onClick={() => signOut()} className="hidden xl:block text-xl font-bold bg-black text-white py-2 px-3 rounded-md w-fit hover:bg-opacity-70 transition duration-300">Se déconnecter</button>
+            <button onClick={handleSignOut} className="hidden xl:block text-xl font-bold bg-black text-white py-2 px-3 rounded-md w-fit hover:bg-opacity-70 transition duration-300">Se déconnecter</button>
         </div>
     )
 }

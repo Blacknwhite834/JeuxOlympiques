@@ -42,8 +42,9 @@ export default function Billetterie() {
             scale: 1,
             opacity: 1,
             duration: 0.5,
-            delay: 0.5,
-            stagger: 0.1
+            delay: 1,
+            stagger: 0.1,
+            zIndex: '0'
         })
     })
 

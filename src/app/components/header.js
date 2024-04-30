@@ -43,8 +43,9 @@ export default function Header({ color, bgColor, borderColor}) {
             opacity: 1,
             duration: 1,
             stagger: 0.2,
+            zIndex: '1'
         })
-    })
+    }, [])
 
 
     useEffect(() => {
@@ -148,14 +149,14 @@ export default function Header({ color, bgColor, borderColor}) {
                 </button>
 
                 {menu && (
-                        <div className="absolute right-0 z-50 bg-zinc-100 text-base text-black rounded-md shadow-lg mt-2 flex justify-center items-start flex-col" style={{ top: menuRef.current ? menuRef.current.offsetHeight + 'px' : '0px' }}>
+                        <div className="absolute right-0 z-50 bg-zinc-100 text-base text-black rounded-md shadow-lg mt-2 flex justify-center items-start flex-col" style={{ top: menuRef.current ? menuRef.current.offsetHeight + 'px' : '0px'}}>
                             {session ? (
                                 <>
                                     <span className="px-4 py-2 font-bold">Profile</span>
                                     <div className="h-0.5 bg-black w-full"></div>
                                     <div className="px-4 pt-2 pb-1">{session.user.name}</div>
                                     <div className="px-4 pb-2 pt-1">{session.user.email}</div>
-                                    <div className="px-4 py-2 hover:opacity-70 cursor-pointer w-full text-center" onClick={redirectToLogout}>Déconnexion</div>
+                                    <div className="px-4 py-2 hover:opacity-70 cursor-pointer w-full text-center z-50" onClick={redirectToLogout}>Déconnexion</div>
                                 </>
                             ) : (
                                 <div className="px-4 py-2 hover:opacity-70 cursor-pointer w-full text-center" onClick={redirectToLogin}>Connexion</div>
