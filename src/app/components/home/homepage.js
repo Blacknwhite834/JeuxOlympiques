@@ -20,11 +20,13 @@ export default function Homepage() {
             delay: 0.5,
         });
 
+        const isSmallScreen = window.innerWidth < 640;
+
         gsap.to(".bg-image", {
             duration: 0.5,
-            borderRadius: "50px",
+            borderRadius: isSmallScreen ? "20px" : "50px",
             opacity: 1,
-            border: "15px solid white",
+            border: isSmallScreen ? "10px solid white" : "15px solid white",
         });
 
         gsap.to(".arrow", {
